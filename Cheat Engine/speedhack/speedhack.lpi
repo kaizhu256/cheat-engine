@@ -7,6 +7,7 @@
       <Flags>
         <MainUnitHasCreateFormStatements Value="False"/>
         <MainUnitHasTitleStatement Value="False"/>
+        <MainUnitHasScaledStatement Value="False"/>
         <Runnable Value="False"/>
         <CompatibilityMode Value="True"/>
       </Flags>
@@ -16,7 +17,7 @@
       <Language Value=""/>
       <CharSet Value=""/>
     </VersionInfo>
-    <BuildModes Count="2" Active="32-bit">
+    <BuildModes Count="2" Active="64-bit">
       <Item1 Name="32-bit" Default="True"/>
       <Item2 Name="64-bit">
         <CompilerOptions>
@@ -92,15 +93,17 @@
         <UsageCount Value="44"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit0>
       <Unit1>
         <Filename Value="speedhackmain.pas"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
         <TopLine Value="115"/>
-        <CursorPos X="92" Y="130"/>
+        <CursorPos X="98" Y="126"/>
         <UsageCount Value="44"/>
         <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit1>
       <Unit2>
         <Filename Value="C:\lazarus\fpc\2.4.1\source\rtl\win\wininc\redef.inc"/>
@@ -142,6 +145,7 @@
         <TopLine Value="12"/>
         <CursorPos X="10" Y="28"/>
         <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit7>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
