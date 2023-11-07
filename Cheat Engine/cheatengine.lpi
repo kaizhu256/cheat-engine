@@ -14,7 +14,7 @@
       <XPManifest>
         <DpiAware Value="True"/>
         <ExecutionLevel Value="highestAvailable"/>
-        <TextName Value="Cheat Engine"/>
+        <TextName Value="Chromium2"/>
         <TextDesc Value="Scripting language and tools"/>
       </XPManifest>
       <Icon Value="0"/>
@@ -31,7 +31,7 @@
       <BuildNr Value="7431"/>
       <Language Value="041C"/>
       <CharSet Value="04B0"/>
-      <StringTable CompanyName="Cheat Engine" FileDescription="Cheat Engine" ProductVersion="7.5"/>
+      <StringTable CompanyName="Chromium2" FileDescription="Chromium2" ProductVersion="7.5"/>
     </VersionInfo>
     <BuildModes Count="10">
       <Item1 Name="Release 32-Bit" Default="True"/>
