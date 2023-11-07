@@ -2,8 +2,8 @@
 <CONFIG>
   <ProjectSession>
     <PathDelim Value="\"/>
-    <Version Value="12"/>
-    <BuildModes Active="Release 32"/>
+    <Version Value="10"/>
+    <BuildModes Active="Release 64"/>
     <Units Count="3">
       <Unit0>
         <Filename Value="luaclient.lpr"/>
@@ -24,10 +24,11 @@
       </Unit1>
       <Unit2>
         <Filename Value="C:\lazarus\fpc\3.0.0\source\rtl\win\wininc\defines.inc"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="1712"/>
         <CursorPos X="6" Y="1726"/>
         <UsageCount Value="45"/>
+        <Loaded Value="True"/>
       </Unit2>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
@@ -152,20 +153,16 @@
         <Caret Line="187" Column="29" TopLine="176"/>
       </Position30>
     </JumpHistory>
-    <RunParams>
-      <FormatVersion Value="2"/>
-      <Modes ActiveMode="default"/>
-    </RunParams>
   </ProjectSession>
   <Debugging>
-    <BreakPoints>
-      <Item>
+    <BreakPoints Count="1">
+      <Item1>
         <Kind Value="bpkSource"/>
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="luaclientfunctions.pas"/>
         <Line Value="225"/>
-      </Item>
+      </Item1>
     </BreakPoints>
   </Debugging>
 </CONFIG>
