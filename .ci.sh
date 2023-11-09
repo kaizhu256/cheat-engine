@@ -65,14 +65,18 @@ shCiBaseCustom() {(set -e
         "winhook/winhook.lpi" \
         "__sentinel__"
     do
-        node --input-type=module --eval '
+        case $FILE in
+        _*)
+            ;;
+        *)
+            BUILD_COMMAND="$(node --input-type=module --eval '
 import moduleFs from "fs";
 (async function () {
     let data;
     let file = process.argv[1];
-    if (file.startsWith("_")) {
-        return;
-    }
+    //!! if (file.startsWith("_")) {
+        //!! return;
+    //!! }
     data = await moduleFs.promises.readFile(file, "utf8");
     data = (/<BuildModes\b[\S\s]*?<\/BuildModes>/).exec(data)[0];
     data = data.matchAll(/Name=(".*?")/g);
@@ -107,13 +111,11 @@ import moduleFs from "fs";
         });
         return cmp;
     })[0];
-    console.error(file, data);
+    data = `lazbuild "${file}" --bm="${data}"`;
+    console.log(JSON.stringify(data));
 }());
-' "$FILE" # '
-        # !! case $FILE in
-        # !! _*)
-            # !! ;;
-        # !! *)
+' "$FILE")" # '
+        printf "$BUILD_COMMAND\n"
             # !! node --eval
             # !! BUILD_MODE0="$(cat cheatengine.lpi \
                 # !! | grep -Pzo "\<BuildModes.*\>\n(.*?\n){1,} *<\/BuildModes\>\n")"
@@ -152,8 +154,8 @@ import moduleFs from "fs";
             # !! fi
             # !! # !! eval "$BUILD_COMMAND"
             # !! # !! PID_LIST="$PID_LIST $!"
-            # !! ;;
-        # !! esac
+            ;;
+        esac
     done
     # !! shPidListWait build_ext "$PID_LIST"
     printf "0\n"
