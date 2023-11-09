@@ -40,15 +40,16 @@ shCiBaseCustom() {(set -e
     for FILE in $(find . | grep "\.lpi" | grep -v "\/backup\/")
     do
         printf "\n\nlazbuild $FILE ...\n"
-        BUILD_MODE=\
-"$(grep -i -o -m1 'item. name="[^"]*64[^"]*"' "$FILE" 2>/dev/null)" || true
+        BUILD_MODE="$(
+            cat "$FILE" \
+                | grep -i -v "debug" \
+                | grep -i -m1 -o 'item. name="[^"]*64[^"]*"' \
+                | grep -o '"[^"]*"' | grep -o '[^"]*' 2>/dev/null
+        )" || true
         if [ "$BUILD_MODE" ]
         then
-            # !! echo $BUILD_MODE
-            BUILD_MODE="$(printf "$BUILD_MODE" | grep -o '"[^"]*"')"
-            # !! BUILD_MODE="$(printf "$BUILD_MODE" | sed -e "s/.*=\| default\|>//gi")"
-            printf "lazbuild --bm=$BUILD_MODE '$FILE'\n"
-            lazbuild --bm=$BUILD_MODE "$FILE"
+            printf "lazbuild $FILE --bm=\"$BUILD_MODE\"\n"
+            lazbuild "$FILE" --bm="$BUILD_MODE"
         fi
     done
     # lazbuild --bm="Release 64-Bit" allochook/allochook.lpi
