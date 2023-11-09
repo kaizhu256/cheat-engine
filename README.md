@@ -62,3 +62,21 @@ Cheat Engine is a development environment focused on modding games and applicati
 ## 32-bit and 64-bit
 
   * In the project options -> Config and Target the setting "Win32 gui application" is checked.
+
+## lazarus projects
+
+  * cecore: if you plan on bulding a jni version for android
+  * ceregreset: to reset your ce config
+  * launcher/cheatengine.lpi: to pick for you which .exe to launch
+  * \plugin: just example plugins
+  * Kernelmoduleunloader.lpi: To unload the driver
+  * luaclient.lpi: You'll need this for {$luacode} blocks
+  * luaclienttest.lpi: Just a small test project
+  * Tutorial\graphical\project1.lpi: If you feel like having the graphical tutorial
+  * speedhack.lpi: If you wish to use the speedhack functionality
+  * standalonephase2.lpi: If you wish to create standalone trainers. and/or want to trigger anti viruses
+  * tutorial.lpi: tutorial. Build it if you think you'll need it. Good app to test stuff on
+  * vehdebug.lpi: VEH debug. You'll need this if you with to use the veh debugger
+  * windowsrepair.lpi: Only needed if there's a registry setting that blocks CE from executing
+  * winhook.lpi : Only needed if you wish to intercept windows messages in the target process
+  * xmplayer.lpi: Needed if you wish to play xm files
