@@ -65,19 +65,21 @@ shCiBaseCustom() {(set -e
         "winhook/winhook.lpi" \
         "__sentinel__"
     do
-        node --input-type=module --eval '
-import moduleAssert from "assert";
-import moduleChildProcess from "child_process";
+        case $FILE in
+        _*)
+            ;;
+        *)
+            BUILD_COMMAND="$(node --input-type=module --eval '
 import moduleFs from "fs";
 (async function () {
     let data;
     let file = process.argv[1];
-    if (file.startsWith("_")) {
-        return;
-    }
+    //!! if (file.startsWith("_")) {
+        //!! return;
+    //!! }
     data = await moduleFs.promises.readFile(file, "utf8");
     data = (/<BuildModes\b[\S\s]*?<\/BuildModes>/).exec(data)[0];
-    data = data.matchAll(/Name=(".*?")/g);
+    data = data.matchAll(/Name="(.*?)"/g);
     data = Array.from(data).map(function (elem) {
         return elem[1];
     });
@@ -109,58 +111,14 @@ import moduleFs from "fs";
         });
         return cmp;
     })[0];
-    data = `lazbuild "${file}" --build-mode="${data}"`;
-    console.error(`\n\n\n\n${data}`);
-    moduleChildProcess.spawn(
-        "bash",
-        ["-c", data],
-        {stdio: ["ignore", 1, 2]}
-    ).on("exit", function (exitCode) {
-        moduleAssert.ok(exitCode === 0, `exitCode=${exitCode}`);
-    });
+    console.log(`lazbuild "${file}" --bm="${data}"`);
 }());
-' "$FILE" # '
-        # !! printf "$BUILD_COMMAND\n"
-            # !! node --eval
-            # !! BUILD_MODE0="$(cat cheatengine.lpi \
-                # !! | grep -Pzo "\<BuildModes.*\>\n(.*?\n){1,} *<\/BuildModes\>\n")"
-            # !! BUILD_MODE=""
-            # !! if [ ! "$BUILD_MODE" ]
-            # !! then
-                # !! BUILD_MODE="$(
-                    # !! cat "$FILE" \
-                        # !! | grep -i -v "debug" \
-                        # !! | grep -i -m1 -o 'item. name="[^"]*64[^"]*"' \
-                        # !! | grep -o '"[^"]*"' | grep -o '[^"]*'
-                # !! )" || true
-            # !! fi
-            # !! if [ ! "$BUILD_MODE" ]
-            # !! then
-                # !! BUILD_MODE="$(
-                    # !! cat "$FILE" \
-                        # !! | grep -i -v "32" \
-                        # !! | grep -i -m1 -o 'item. name="[^"]*"' \
-                        # !! | grep -o '"[^"]*"' | grep -o '[^"]*'
-                # !! )" || true
-            # !! fi
-            # !! if [ ! "$BUILD_MODE" ]
-            # !! then
-                # !! BUILD_MODE="$(
-                    # !! cat "$FILE" \
-                        # !! | grep -i -m1 -o 'item. name="[^"]*"' \
-                        # !! | grep -o '"[^"]*"' | grep -o '[^"]*'
-                # !! )" || true
-            # !! fi
-            # !! BUILD_COMMAND="lazbuild \"$FILE\" --bm=\"$BUILD_MODE\""
-            # !! printf "\n\n\n\n$BUILD_COMMAND\n"
-            # !! if [ ! "$BUILD_MODE" ]
-            # !! then
-                # !! exit 1
-            # !! fi
-            # !! # !! eval "$BUILD_COMMAND"
-            # !! # !! PID_LIST="$PID_LIST $!"
-            # !! ;;
-        # !! esac
+' "$FILE")" # '
+            printf "\n\n\n\n$BUILD_COMMAND\n"
+            eval "$BUILD_COMMAND"
+                # !! PID_LIST="$PID_LIST $!"
+                ;;
+        esac
     done
     # !! shPidListWait build_ext "$PID_LIST"
     printf "0\n"
