@@ -34,7 +34,7 @@
       <StringTable CompanyName="Cheat Engine" FileDescription="Cheat Engine" ProductVersion="7.5"/>
     </VersionInfo>
     <BuildModes Count="10">
-      <Item1 Name="Release 32-Bit" Default="True"/>
+      <Item1 Name="Release 32-Bit"/>
       <Item2 Name="Release 64-Bit">
         <CompilerOptions>
           <Version Value="11"/>
@@ -118,7 +118,7 @@
           </Other>
         </CompilerOptions>
       </Item2>
-      <Item3 Name="Release 64-Bit O4 AVX2">
+      <Item3 Name="Release 64-Bit O4 AVX2" Default="True">
         <CompilerOptions>
           <Version Value="11"/>
           <PathDelim Value="\"/>
