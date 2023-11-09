@@ -65,11 +65,7 @@ shCiBaseCustom() {(set -e
         "winhook/winhook.lpi" \
         "__sentinel__"
     do
-        case $FILE in
-        _*)
-            ;;
-        *)
-            node --input-type=module --eval '
+        node --input-type=module --eval '
 import moduleAssert from "assert";
 import moduleChildProcess from "child_process";
 import moduleFs from "fs";
@@ -113,15 +109,15 @@ import moduleFs from "fs";
         });
         return cmp;
     })[0];
+    data = `lazbuild "${file}" --build-mode="${data}"`;
+    console.error(`\n\n\n\n${data}`);
     moduleChildProcess.spawn(
-        "C:\\lazarus\\lazbuild.exe",
-        [file, `--bm="${data}"`],
+        "bash",
+        ["-c", data],
         {stdio: ["ignore", 1, 2]}
     ).on("exit", function (exitCode) {
         moduleAssert.ok(exitCode === 0, `exitCode=${exitCode}`);
     });
-    data = `lazbuild "${file}" --bm="${data}"`;
-    console.log(JSON.stringify(data));
 }());
 ' "$FILE" # '
         # !! printf "$BUILD_COMMAND\n"
