@@ -11,15 +11,12 @@
     "engines": {
         "node": ">=14"
     },
-    "fileCount": 2477,
-    "homepage": "https://github.com/cheat-engine/cheat-engine",
+    "fileCount": 2463,
+    "homepage": "https://github.com/kaizhu256/cheat-engine",
     "keywords": [
-        "data-science",
-        "database",
-        "numerical",
-        "sqlite"
+        "cheatengine",
+        "cheat-engine"
     ],
-    "license": "MIT",
     "main": "cheatengine.mjs",
     "name": "cheatengine",
     "os": [
@@ -29,7 +26,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/cheat-engine/cheat-engine.git"
+        "url": "https://github.com/kaizhu256/cheat-engine.git"
     },
     "scripts": {
         "build": "sh jslint_ci.sh shCiBuildNodejs",
