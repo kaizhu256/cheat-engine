@@ -37,29 +37,45 @@ shCiBaseCustom() {(set -e
     (
     cd "Cheat Engine/"
     # lazbuild cheatengine.lpi --build-mode="Release 64-Bit O4 AVX2"
+    # find . | grep "\.lpi" | grep -v "\/backup\/"
     PID_LIST=""
-    for FILE in $(
-        find . \
-            | grep "\.lpi" \
-            | grep -v "\/backup\/" \
-            | grep -v "\/Tutorial\/graphical\/"
-    )
+    for FILE in \
+        "Tutorial/tutorial.lpi" \
+        "_Tutorial/graphical/project1.lpi" \
+        "_VEHDebug/vehdebug.lpi" \
+        "_cecore.lpi" \
+        "_cepack/cepack.lpi" \
+        "_ceregreset/ceregreset.lpi" \
+        "_dbk32/Kernelmodule unloader/Kernelmoduleunloader.lpi" \
+        "_launcher/cheatengine.lpi" \
+        "_luaclient/testapp/luaclienttest.lpi" \
+        "_plugin/DebugEventLog/src/DebugEventLog.lpi" \
+        "_plugin/example/exampleplugin.lpi" \
+        "_sfx/level2/standalonephase2.lpi" \
+        "_speedhack/speedhacktest/speedhacktest.lpi" \
+        "_windowsrepair/windowsrepair.lpi" \
+        "_winhook/winhook.lpi" \
+        "_xmplayer/xmplayer.lpi" \
+        "_allochook/allochook.lpi" \
+        "cheatengine.lpi" \
+        "debuggertest/debuggertest.lpi" \
+        "luaclient/luaclient.lpi" \
+        "plugin/forcedinjection/forcedinjection.lpi" \
+        "speedhack/speedhack.lpi" \
+        "__sentinel__"
     do
-        printf "\n\n\n\nlazbuild $FILE ...\n"
-        BUILD_MODE="$(
-            cat "$FILE" 2>/dev/null \
-                | grep -i -v "debug" \
-                | grep -i -m1 -o 'item. name="[^"]*64[^"]*"' \
-                | grep -o '"[^"]*"' | grep -o '[^"]*'
-        )" || true
-        if [ "$BUILD_MODE" ]
-        then
-            printf "lazbuild $FILE --bm=\"$BUILD_MODE\"\n"
-            lazbuild "$FILE" --bm="$BUILD_MODE" &
+        case $FILE in
+        _*)
+            ;;
+        *)
+            printf "\n\n\n\nlazbuild $FILE\n"
+            lazbuild "$FILE" &
             PID_LIST="$PID_LIST $!"
-        fi
+            ;;
+        esac
     done
     shPidListWait build_ext "$PID_LIST"
+    printf "0\n"
     )
     #
     # upload artifact
