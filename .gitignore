@@ -34,3 +34,12 @@ wheelhouse/
 !.npmignore
 !_*.py
 # base - .gitignore - end
+
+
+*.lrj
+.DS_Store
+Cheat Engine/backup
+Cheat Engine/bin
+Cheat Engine/cheatengine.lps
+Cheat Engine/cheatengine.res
+Cheat Engine/lib
