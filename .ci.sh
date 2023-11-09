@@ -37,6 +37,7 @@ shCiBaseCustom() {(set -e
     (
     cd "Cheat Engine/"
     # lazbuild cheatengine.lpi --build-mode="Release 64-Bit O4 AVX2"
+    PID_LIST=""
     for FILE in $(
         find . \
             | grep "\.lpi" \
@@ -54,9 +55,11 @@ shCiBaseCustom() {(set -e
         if [ "$BUILD_MODE" ]
         then
             printf "lazbuild $FILE --bm=\"$BUILD_MODE\"\n"
-            lazbuild "$FILE" --bm="$BUILD_MODE"
+            lazbuild "$FILE" --bm="$BUILD_MODE" &
+            PID_LIST="$PID_LIST $!"
         fi
     done
+    shPidListWait build_ext "$PID_LIST"
     )
     #
     # upload artifact
