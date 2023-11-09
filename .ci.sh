@@ -37,7 +37,7 @@ shCiBaseCustom() {(set -e
     (
     cd "Cheat Engine/"
     # lazbuild cheatengine.lpi --build-mode="Release 64-Bit O4 AVX2"
-    # find . | grep '\.ppu$\|\.ppl$\|\.o$\|\.or$\|\.res$' | xargs rm
+    # find . | grep "\.ppu$\|\.ppl$\|\.o$\|\.or$\|\.res$" | xargs rm
     # find . | grep "\.lpi" | grep -v "\/backup\/"
     PID_LIST=""
     for FILE in \
