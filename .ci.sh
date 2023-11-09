@@ -58,18 +58,18 @@ shCiBaseCustom() {(set -e
         # ./launcher/cheatengine.lpi) ;;
         # ./luaclient/luaclient.lpi) ;;
         # ./luaclient/testapp/luaclienttest.lpi) ;;
+        # ./plugin/DebugEventLog/src/DebugEventLog.lpi) ;;
         # ./plugin/example/exampleplugin.lpi) ;;
+        # ./plugin/forcedinjection/forcedinjection.lpi) ;;
         # ./sfx/level2/standalonephase2.lpi) ;;
         # ./speedhack/speedhack.lpi) ;;
         # ./speedhack/speedhacktest/speedhacktest.lpi) ;;
         # ./windowsrepair/windowsrepair.lpi) ;;
+        # ./winhook/winhook.lpi) ;;
         ./Tutorial/graphical/project1.lpi) ;;
         ./cecore.lpi) ;;
         ./cheatengine.lpi) ;;
         ./dbk32/Kernelmodule) ;;
-        ./plugin/DebugEventLog/src/DebugEventLog.lpi) ;;
-        ./plugin/forcedinjection/forcedinjection.lpi) ;;
-        ./winhook/winhook.lpi) ;;
         ./xmplayer/xmplayer.lpi) ;;
         unloader/Kernelmoduleunloader.lpi) ;;
         *)
