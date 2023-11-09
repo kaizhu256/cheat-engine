@@ -69,20 +69,32 @@ shCiBaseCustom() {(set -e
         _*)
             ;;
         *)
-            BUILD_MODE="$(
-                cat "$FILE" \
-                    | grep -i -v "debug" \
-                    | grep -i -m1 -o 'item. name="[^"]*64[^"]*"' \
-                    | grep -o '"[^"]*"' | grep -o '[^"]*'
-            )" || true
-            if [ "$BUILD_MODE" ]
+            BUILD_MODE=""
+            if [ ! "$BUILD_MODE" ]
             then
-                printf "\n\n\n\nlazbuild $FILE --bm=\"$BUILD_MODE\"\n"
-                lazbuild "$FILE" --bm="$BUILD_MODE"
-            else
-                printf "lazbuild $FILE\n"
-                lazbuild "$FILE"
+                BUILD_MODE="$(
+                    cat "$FILE" \
+                        | grep -i -v "debug" \
+                        | grep -i -m1 -o 'item. name="[^"]*64[^"]*"' \
+                        | grep -o '"[^"]*"' | grep -o '[^"]*'
+                )" || true
             fi
+            if [ ! "$BUILD_MODE" ]
+            then
+                BUILD_MODE="$(
+                    cat "$FILE" \
+                        | grep -i -v "32" \
+                        | grep -i -m1 -o 'item. name="[^"]*"' \
+                        | grep -o '"[^"]*"' | grep -o '[^"]*'
+                )" || true
+            fi
+            BUILD_COMMAND="lazbuild \"$FILE\" --bm=\"$BUILD_MODE\""
+            printf "\n\n\n\n$BUILD_COMMAND\n"
+            if [ ! "$BUILD_MODE" ]
+            then
+                return 1
+            fi
+            eval "$BUILD_COMMAND"
             # !! PID_LIST="$PID_LIST $!"
             ;;
         esac
