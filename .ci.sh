@@ -24,6 +24,8 @@ shCiBaseCustom() {(set -e
     if [ ! -d /c/lazarus/ ] && [ ! -d lazarus/ ]
     then
         mv lazarus /c/
+        mkdir -p ~/bin/
+        ln -s /c/lazarus/lazbuild.exe
     fi
     export PATH="$PATH:/c/lazarus/"
     if (shCiMatrixIsmainName)
