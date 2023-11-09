@@ -39,12 +39,14 @@ shCiBaseCustom() {(set -e
     # lazbuild cheatengine.lpi --build-mode="Release 64-Bit O4 AVX2"
     for FILE in $(find . | grep "\.lpi")
     do
-        printf "\nlazbuild $FILE ...\n"
-        BUILD_MODE="$(grep -i "item. name=*64*\"" "$FILE" 2>/dev/null)"
-        if [ "BUILD_MODE" ]
+        printf "\n\nlazbuild $FILE ...\n"
+        BUILD_MODE="$(grep -i "item. name=.*64.*\"" "$FILE" 2>/dev/null)" \
+            || true
+        if [ "$BUILD_MODE" ]
         then
-            printf "lazbuild --bm='$BUILD_MODE' '$FILE'\n"
-            # !! lazbuild --bm="$BUILD_MODE" "$FILE"
+            BUILD_MODE="$(printf "$BUILD_MODE" | sed -e "s/.*=\|>//g")"
+            printf "lazbuild --bm=$BUILD_MODE '$FILE'\n"
+            lazbuild --bm=$BUILD_MODE "$FILE"
         fi
     done
     # lazbuild --bm="Release 64-Bit" allochook/allochook.lpi
