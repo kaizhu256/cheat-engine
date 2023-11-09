@@ -41,10 +41,9 @@ shCiBaseCustom() {(set -e
     PID_LIST=""
     for FILE in \
         "Tutorial/tutorial.lpi" \
+        "VEHDebug/vehdebug.lpi" \
         "_Tutorial/graphical/project1.lpi" \
-        "_VEHDebug/vehdebug.lpi" \
-        "_cecore.lpi" \
-        "_cepack/cepack.lpi" \
+        "_allochook/allochook.lpi" \
         "_ceregreset/ceregreset.lpi" \
         "_dbk32/Kernelmodule unloader/Kernelmoduleunloader.lpi" \
         "_launcher/cheatengine.lpi" \
@@ -56,7 +55,8 @@ shCiBaseCustom() {(set -e
         "_windowsrepair/windowsrepair.lpi" \
         "_winhook/winhook.lpi" \
         "_xmplayer/xmplayer.lpi" \
-        "_allochook/allochook.lpi" \
+        "cecore.lpi" \
+        "cepack/cepack.lpi" \
         "cheatengine.lpi" \
         "debuggertest/debuggertest.lpi" \
         "luaclient/luaclient.lpi" \
@@ -68,8 +68,20 @@ shCiBaseCustom() {(set -e
         _*)
             ;;
         *)
-            printf "\n\n\n\nlazbuild $FILE\n"
-            lazbuild "$FILE" &
+            BUILD_MODE="$(
+                cat "$FILE" \
+                    | grep -i -v "debug" \
+                    | grep -i -m1 -o 'item. name="[^"]*64[^"]*"' \
+                    | grep -o '"[^"]*"' | grep -o '[^"]*'
+            )" || true
+            if [ "$BUILD_MODE" ]
+            then
+                printf "lazbuild $FILE --bm=\"$BUILD_MODE\"\n"
+                lazbuild "$FILE" --bm="$BUILD_MODE" &
+            else
+                printf "lazbuild $FILE\n"
+                lazbuild "$FILE" &
+            fi
             PID_LIST="$PID_LIST $!"
             ;;
         esac
