@@ -38,7 +38,7 @@ jobs:
         v${{ matrix.node_version }}
         ${{ matrix.architecture }}
         ${{ matrix.os }}
-      CI_MATRIX_NAME_MAIN: "node v20 x64 windows-latest"
+      CI_MATRIX_NAME_MAIN: "node v20 x64 ubuntu-latest"
       CI_MATRIX_NODE_VERSION: v${{ matrix.node_version }}
       CI_MATRIX_NODE_VERSION_MAIN: v20
       CI_WORKFLOW_NAME: >

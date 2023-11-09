@@ -26,14 +26,11 @@ shCiBaseCustom() {(set -e
         mv lazarus /c/
     fi
     export PATH="$PATH:/c/lazarus/"
-    if (shCiMatrixIsmainName)
+    # .github_cache - save
+    if [ "$GITHUB_ACTION" ] && [ ! -d .github_cache/lazarus/ ]
     then
-        # .github_cache - save
-        if [ "$GITHUB_ACTION" ] && [ ! -d .github_cache/lazarus/ ]
-        then
-            mkdir -p .github_cache
-            cp -a /c/lazarus .github_cache/
-        fi
+        mkdir -p .github_cache
+        cp -a /c/lazarus .github_cache/
     fi
     return
     #
@@ -119,7 +116,7 @@ shCiBaseCustomArtifactUpload() {(set -e
         # git push
         shGitCmdWithGithubToken push origin artifact
         # git squash
-        if (shCiMatrixIsmainName) && [ "$GITHUB_BRANCH0" = alpha ]
+        if [ "$GITHUB_BRANCH0" = alpha ]
         then
             shGitCommitPushOrSquash "" 50
         fi
