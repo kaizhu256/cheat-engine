@@ -122,8 +122,8 @@ shCiBaseCustomArtifactUpload() {(set -e
         rm -f "branch-$GITHUB_BRANCH0/"*.exe
         ;;
     esac
-    cp ../../bin/*.dll "branch-$GITHUB_BRANCH0/"
-    cp ../../bin/*.exe "branch-$GITHUB_BRANCH0/"
+    cp "../../Cheat Engine/bin/"*.dll "branch-$GITHUB_BRANCH0/"
+    cp "../../Cheat Engine/bin/"*.exe "branch-$GITHUB_BRANCH0/"
     # git commit
     git add .
     if (git commit -am "$COMMIT_MESSAGE")
