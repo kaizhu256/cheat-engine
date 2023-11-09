@@ -4,15 +4,10 @@ name: ci
 on:
   push:
     branches:
-      - "*/*/*"
       - alpha
       - beta
       - master
   workflow_dispatch:
-    inputs:
-      workflow_dispatch_name:
-        default: undefined
-        required: false
 env:
   MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
   zzzz1234: 1
@@ -33,8 +28,8 @@ jobs:
         python_version:
           - "3.10"
         os:
-          - macos-latest
-          - ubuntu-latest
+          # - macos-latest
+          # - ubuntu-latest
           - windows-latest
 # base - .github/workflows/ci.yml - beg
     env:
