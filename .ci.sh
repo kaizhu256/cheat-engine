@@ -24,8 +24,6 @@ shCiBaseCustom() {(set -e
     if [ ! -d /c/lazarus/ ] && [ ! -d lazarus/ ]
     then
         mv lazarus /c/
-        mkdir -p ~/bin/
-        ln -s /c/lazarus/lazbuild.exe
     fi
     export PATH="$PATH:/c/lazarus/"
     if (shCiMatrixIsmainName)
@@ -37,6 +35,7 @@ shCiBaseCustom() {(set -e
             cp -a /c/lazarus .github_cache/
         fi
     fi
+    return
     #
     # build cheat-engine
     (
