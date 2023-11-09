@@ -37,11 +37,8 @@ shCiBaseCustom() {(set -e
     (
     cd "Cheat Engine/"
     # lazbuild cheatengine.lpi --build-mode="Release 64-Bit O4 AVX2"
-    # !! # find . | grep "\.ppu$\|\.ppl$\|\.o$\|\.or$" | xargs rm
-    # find . | grep "\.lpi" | grep -v "\/backup\/"
-    PID_LIST=""
+    # PID_LIST=""
     for FILE in $(find . | grep "\.lpi" | grep -v "\/backup\/" | sort)
-    # !! for FILE in \
     do
         if [ "$FILE" = "./dbk32/Kernelmodule" ]
         then
@@ -124,12 +121,13 @@ import moduleFs from "fs";
             if [ "$npm_config_mode_dryrun" != 1 ]
             then
                 eval "$BUILD_COMMAND"
-                # !! PID_LIST="$PID_LIST $!"
+                # eval "$BUILD_COMMAND" &
+                # PID_LIST="$PID_LIST $!"
             fi
             ;;
         esac
     done
-    # !! shPidListWait build_ext "$PID_LIST"
+    # shPidListWait build_ext "$PID_LIST"
     printf "0\n"
     )
     #
@@ -198,6 +196,12 @@ shCiBaseCustomArtifactUpload() {(set -e
     esac
     cp "../../Cheat Engine/bin/"*.dll "branch-$GITHUB_BRANCH0/"
     cp "../../Cheat Engine/bin/"*.exe "branch-$GITHUB_BRANCH0/"
+    find "../../Cheat Engine" \
+        | grep "\.dll$\|\.exe$" \
+        | grep -v "\/bin\/" \
+        | sort \
+        | tr "\n" "\0" \
+        | xargs -0 -I{} printf 'cp "{}" aa\n'
     # git commit
     git add .
     if (git commit -am "$COMMIT_MESSAGE")
