@@ -1,0 +1,42 @@
+{
+    "author": {
+        "email": "kaizhu256@gmail.com",
+        "name": "kai zhu"
+    },
+    "counter": 0,
+    "cpu": [
+        "x64"
+    ],
+    "description": "Cheat Engine is a development environment focused on modding games and applications for personal use.",
+    "engines": {
+        "node": ">=14"
+    },
+    "fileCount": 2473,
+    "homepage": "https://github.com/cheat-engine/cheat-engine",
+    "keywords": [
+        "data-science",
+        "database",
+        "numerical",
+        "sqlite"
+    ],
+    "license": "MIT",
+    "main": "cheatengine.mjs",
+    "name": "cheatengine",
+    "os": [
+        "darwin",
+        "linux",
+        "win32"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/cheat-engine/cheat-engine.git"
+    },
+    "scripts": {
+        "build": "sh jslint_ci.sh shCiBuildNodejs",
+        "test": "sh jslint_ci.sh shCiTestNodejs",
+        "test2": "sh jslint_ci.sh shCiBase"
+    },
+    "shCiArtifactUpload": 1,
+    "shCiPublishNpm": 0,
+    "version": "2023.10.25"
+}
