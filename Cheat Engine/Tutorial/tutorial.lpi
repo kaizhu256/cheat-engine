@@ -167,19 +167,25 @@
       <Version Value="2"/>
     </PublishOptions>
     <RunParams>
+      <local>
+        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T &apos;Lazarus Run Output&apos; -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </local>
       <FormatVersion Value="2"/>
       <Modes Count="1">
         <Mode0 Name="default">
           <local>
-            <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+            <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T &apos;Lazarus Run Output&apos; -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
           </local>
         </Mode0>
       </Modes>
     </RunParams>
-    <RequiredPackages Count="1">
+    <RequiredPackages Count="2">
       <Item1>
-        <PackageName Value="LCL"/>
+        <PackageName Value="laz.virtualtreeview_package"/>
       </Item1>
+      <Item2>
+        <PackageName Value="LCL"/>
+      </Item2>
     </RequiredPackages>
     <Units Count="40">
       <Unit0>
@@ -555,6 +561,14 @@
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit39>
+      <Unit40>
+        <Filename Value="..\betterControls\newvirtualstringtree.pas"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="64" Y="7"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit40>
     </Units>
     <JumpHistory Count="27" HistoryIndex="26">
       <Position1>
@@ -665,6 +679,18 @@
         <Filename Value="cetranslator.pas"/>
         <Caret Line="93" Column="37" TopLine="79"/>
       </Position27>
+      <Position28>
+        <Filename Value="tutorial.lpr"/>
+        <Caret Line="28"/>
+      </Position28>
+      <Position29>
+        <Filename Value="..\betterControls\newvirtualstringtree.pas"/>
+        <Caret Line="8" Column="32"/>
+      </Position29>
+      <Position30>
+        <Filename Value="..\betterControls\newvirtualstringtree.pas"/>
+        <Caret Line="6" Column="92"/>
+      </Position30>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
