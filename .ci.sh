@@ -21,7 +21,7 @@ shCiBaseCustom() {(set -e
             --single-branch \
             https://github.com/kaizhu256/lazarus-win32 lazarus
     fi
-    if [ ! -d /c/lazarus/ ] && [ ! -d lazarus/ ]
+    if [ ! -d /c/lazarus/ ]
     then
         mv lazarus /c/
     fi
