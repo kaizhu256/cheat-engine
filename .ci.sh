@@ -40,43 +40,44 @@ shCiBaseCustom() {(set -e
     # find . | grep "\.ppu$\|\.ppl$\|\.o$\|\.or$" | xargs rm
     # find . | grep "\.lpi" | grep -v "\/backup\/"
     PID_LIST=""
-    for FILE in \
-        "Tutorial/tutorial.lpi" \
-        "VEHDebug/vehdebug.lpi" \
-        "_Tutorial/graphical/project1.lpi" \
-        "_cecore.lpi" \
-        "cepack/cepack.lpi" \
-        "_ceregreset/ceregreset.lpi" \
-        "dbk32/Kernelmodule unloader/Kernelmoduleunloader.lpi" \
-        "_launcher/cheatengine.lpi" \
-        "_luaclient/testapp/luaclienttest.lpi" \
-        "_plugin/DebugEventLog/src/DebugEventLog.lpi" \
-        "_plugin/example/exampleplugin.lpi" \
-        "_sfx/level2/standalonephase2.lpi" \
-        "_speedhack/speedhacktest/speedhacktest.lpi" \
-        "_windowsrepair/windowsrepair.lpi" \
-        "_xmplayer/xmplayer.lpi" \
-        "allochook/allochook.lpi" \
-        "_cheatengine.lpi" \
-        "debuggertest/debuggertest.lpi" \
-        "luaclient/luaclient.lpi" \
-        "plugin/forcedinjection/forcedinjection.lpi" \
-        "speedhack/speedhack.lpi" \
-        "winhook/winhook.lpi" \
-        "__sentinel__"
+    for FILE in $(
+        find . \
+            | grep "\.lpi" \
+            | grep -v "\/backup\/" \
+    )
+    # !! for FILE in \
     do
         case $FILE in
-        _*)
-            ;;
+        "./Tutorial/graphical/project1.lpi") ;;
+        "./Tutorial/tutorial.lpi") ;;
+        "./VEHDebug/vehdebug.lpi") ;;
+        "./allochook/allochook.lpi") ;;
+        "./cecore.lpi") ;;
+        "./cepack/cepack.lpi") ;;
+        "./ceregreset/ceregreset.lpi") ;;
+        "./cheatengine.lpi") ;;
+        "./dbk32/Kernelmodule unloader/Kernelmoduleunloader.lpi") ;;
+        "./dbk32/Kernelmodule") ;;
+        "./debuggertest/debuggertest.lpi") ;;
+        "./launcher/cheatengine.lpi") ;;
+        "./luaclient/luaclient.lpi") ;;
+        "./luaclient/testapp/luaclienttest.lpi") ;;
+        "./plugin/DebugEventLog/src/DebugEventLog.lpi") ;;
+        "./plugin/example/exampleplugin.lpi") ;;
+        "./plugin/forcedinjection/forcedinjection.lpi") ;;
+        "./sfx/level2/standalonephase2.lpi") ;;
+        "./speedhack/speedhack.lpi") ;;
+        "./speedhack/speedhacktest/speedhacktest.lpi") ;;
+        "./windowsrepair/windowsrepair.lpi") ;;
+        "./winhook/winhook.lpi") ;;
+        "./xmplayer/xmplayer.lpi") ;;
+        "unloader/Kernelmoduleunloader.lpi") ;;
         *)
             BUILD_COMMAND="$(node --input-type=module --eval '
 import moduleFs from "fs";
 (async function () {
     let data;
     let file = process.argv[1];
-    //!! if (file.startsWith("_")) {
-        //!! return;
-    //!! }
     data = await moduleFs.promises.readFile(file, "utf8");
     data = (/<BuildModes\b[\S\s]*?<\/BuildModes>/).exec(data)[0];
     data = data.matchAll(/Name="(.*?)"/g);
@@ -115,9 +116,9 @@ import moduleFs from "fs";
 }());
 ' "$FILE")" # '
             printf "\n\n\n\n$BUILD_COMMAND\n"
-            eval "$BUILD_COMMAND"
-                # !! PID_LIST="$PID_LIST $!"
-                ;;
+            # !! eval "$BUILD_COMMAND"
+            # !! PID_LIST="$PID_LIST $!"
+            ;;
         esac
     done
     # !! shPidListWait build_ext "$PID_LIST"
