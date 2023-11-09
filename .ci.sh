@@ -54,6 +54,7 @@ shCiBaseCustom() {(set -e
         # ./allochook/allochook.lpi) ;;
         # ./cepack/cepack.lpi) ;;
         # ./ceregreset/ceregreset.lpi) ;;
+        # ./cheatengine.lpi) ;;
         # ./debuggertest/debuggertest.lpi) ;;
         # ./launcher/cheatengine.lpi) ;;
         # ./luaclient/luaclient.lpi) ;;
@@ -68,7 +69,6 @@ shCiBaseCustom() {(set -e
         # ./winhook/winhook.lpi) ;;
         ./Tutorial/graphical/project1.lpi) ;;
         ./cecore.lpi) ;;
-        ./cheatengine.lpi) ;;
         ./dbk32/Kernelmodule) ;;
         ./xmplayer/xmplayer.lpi) ;;
         unloader/Kernelmoduleunloader.lpi) ;;
@@ -116,8 +116,11 @@ import moduleFs from "fs";
 }());
 ' "$FILE")" # '
             printf "\n\n\n\n$BUILD_COMMAND\n"
-            eval "$BUILD_COMMAND"
-            # !! PID_LIST="$PID_LIST $!"
+            if [ "$npm_config_mode_dryrun" != 1 ]
+            then
+                eval "$BUILD_COMMAND"
+                # !! PID_LIST="$PID_LIST $!"
+            fi
             ;;
         esac
     done
