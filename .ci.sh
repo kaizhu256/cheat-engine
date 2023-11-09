@@ -32,7 +32,6 @@ shCiBaseCustom() {(set -e
         mkdir -p .github_cache
         cp -a /c/lazarus .github_cache/
     fi
-    return
     #
     # build cheat-engine
     (
