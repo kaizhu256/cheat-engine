@@ -40,7 +40,7 @@ shCiBaseCustom() {(set -e
     # !! # find . | grep "\.ppu$\|\.ppl$\|\.o$\|\.or$" | xargs rm
     # find . | grep "\.lpi" | grep -v "\/backup\/"
     PID_LIST=""
-    for FILE in $(find . | grep "\.lpi" | grep -v "\/backup\/")
+    for FILE in $(find . | grep "\.lpi" | grep -v "\/backup\/" | sort)
     # !! for FILE in \
     do
         if [ "$FILE" = "./dbk32/Kernelmodule" ]
@@ -49,26 +49,26 @@ shCiBaseCustom() {(set -e
         fi
         case $FILE in
         # "./dbk32/Kernelmodule unloader/Kernelmoduleunloader.lpi") ;;
-        ./Tutorial/graphical/project1.lpi) ;;
         # ./Tutorial/tutorial.lpi) ;;
         # ./VEHDebug/vehdebug.lpi) ;;
         # ./allochook/allochook.lpi) ;;
+        # ./cepack/cepack.lpi) ;;
+        # ./ceregreset/ceregreset.lpi) ;;
+        # ./debuggertest/debuggertest.lpi) ;;
+        # ./launcher/cheatengine.lpi) ;;
+        # ./luaclient/luaclient.lpi) ;;
+        # ./luaclient/testapp/luaclienttest.lpi) ;;
+        # ./plugin/example/exampleplugin.lpi) ;;
+        # ./sfx/level2/standalonephase2.lpi) ;;
+        # ./speedhack/speedhack.lpi) ;;
+        # ./speedhack/speedhacktest/speedhacktest.lpi) ;;
+        # ./windowsrepair/windowsrepair.lpi) ;;
+        ./Tutorial/graphical/project1.lpi) ;;
         ./cecore.lpi) ;;
-        # !! ./cepack/cepack.lpi) ;;
-        ./ceregreset/ceregreset.lpi) ;;
         ./cheatengine.lpi) ;;
         ./dbk32/Kernelmodule) ;;
-        ./debuggertest/debuggertest.lpi) ;;
-        ./launcher/cheatengine.lpi) ;;
-        # ./luaclient/luaclient.lpi) ;;
-        # !! ./luaclient/testapp/luaclienttest.lpi) ;;
         ./plugin/DebugEventLog/src/DebugEventLog.lpi) ;;
-        ./plugin/example/exampleplugin.lpi) ;;
         ./plugin/forcedinjection/forcedinjection.lpi) ;;
-        ./sfx/level2/standalonephase2.lpi) ;;
-        # ./speedhack/speedhack.lpi) ;;
-        ./speedhack/speedhacktest/speedhacktest.lpi) ;;
-        ./windowsrepair/windowsrepair.lpi) ;;
         ./winhook/winhook.lpi) ;;
         ./xmplayer/xmplayer.lpi) ;;
         unloader/Kernelmoduleunloader.lpi) ;;
