@@ -37,14 +37,15 @@ shCiBaseCustom() {(set -e
     (
     cd "Cheat Engine/"
     # lazbuild cheatengine.lpi --build-mode="Release 64-Bit O4 AVX2"
-    # find . | grep "\.ppu$\|\.ppl$\|\.o$\|\.or$\|\.res$" | xargs rm
+    # find . | grep "\.ppu$\|\.ppl$\|\.o$\|\.or$" | xargs rm
     # find . | grep "\.lpi" | grep -v "\/backup\/"
     PID_LIST=""
     for FILE in \
         "Tutorial/tutorial.lpi" \
         "VEHDebug/vehdebug.lpi" \
         "_Tutorial/graphical/project1.lpi" \
-        "_allochook/allochook.lpi" \
+        "_cecore.lpi" \
+        "_cepack/cepack.lpi" \
         "_ceregreset/ceregreset.lpi" \
         "_dbk32/Kernelmodule unloader/Kernelmoduleunloader.lpi" \
         "_launcher/cheatengine.lpi" \
@@ -54,15 +55,14 @@ shCiBaseCustom() {(set -e
         "_sfx/level2/standalonephase2.lpi" \
         "_speedhack/speedhacktest/speedhacktest.lpi" \
         "_windowsrepair/windowsrepair.lpi" \
-        "_winhook/winhook.lpi" \
         "_xmplayer/xmplayer.lpi" \
-        "cecore.lpi" \
-        "cepack/cepack.lpi" \
+        "allochook/allochook.lpi" \
         "cheatengine.lpi" \
         "debuggertest/debuggertest.lpi" \
         "luaclient/luaclient.lpi" \
         "plugin/forcedinjection/forcedinjection.lpi" \
         "speedhack/speedhack.lpi" \
+        "winhook/winhook.lpi" \
         "__sentinel__"
     do
         case $FILE in
@@ -78,16 +78,16 @@ shCiBaseCustom() {(set -e
             if [ "$BUILD_MODE" ]
             then
                 printf "\n\n\n\nlazbuild $FILE --bm=\"$BUILD_MODE\"\n"
-                lazbuild "$FILE" --bm="$BUILD_MODE" &
+                lazbuild "$FILE" --bm="$BUILD_MODE"
             else
                 printf "lazbuild $FILE\n"
-                lazbuild "$FILE" &
+                lazbuild "$FILE"
             fi
-            PID_LIST="$PID_LIST $!"
+            # !! PID_LIST="$PID_LIST $!"
             ;;
         esac
     done
-    shPidListWait build_ext "$PID_LIST"
+    # !! shPidListWait build_ext "$PID_LIST"
     printf "0\n"
     )
     #
