@@ -49,6 +49,7 @@ shCiBaseCustom() {(set -e
         fi
         case $FILE in
         # "./dbk32/Kernelmodule unloader/Kernelmoduleunloader.lpi") ;;
+        # ./Tutorial/graphical/project1.lpi) ;;
         # ./Tutorial/tutorial.lpi) ;;
         # ./VEHDebug/vehdebug.lpi) ;;
         # ./allochook/allochook.lpi) ;;
@@ -67,7 +68,6 @@ shCiBaseCustom() {(set -e
         # ./speedhack/speedhacktest/speedhacktest.lpi) ;;
         # ./windowsrepair/windowsrepair.lpi) ;;
         # ./winhook/winhook.lpi) ;;
-        ./Tutorial/graphical/project1.lpi) ;;
         ./cecore.lpi) ;;
         ./dbk32/Kernelmodule) ;;
         ./xmplayer/xmplayer.lpi) ;;
@@ -112,6 +112,11 @@ import moduleFs from "fs";
         });
         return cmp;
     })[0];
+    switch (file) {
+    case "./Tutorial/graphical/project1.lpi":
+        data = "Release 32";
+        break;
+    }
     console.log(`lazbuild "${file}" --bm="${data}"`);
 }());
 ' "$FILE")" # '
