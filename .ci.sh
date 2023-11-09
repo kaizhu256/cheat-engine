@@ -37,7 +37,7 @@ shCiBaseCustom() {(set -e
     (
     cd "Cheat Engine/"
     # lazbuild cheatengine.lpi --build-mode="Release 64-Bit O4 AVX2"
-    for FILE in $(find . | grep "\.lpi")
+    for FILE in "$(find . | grep "\.lpi")"
     do
         printf "\nlazbuild $FILE ...\n"
         grep -i "item. name=" "$FILE"
