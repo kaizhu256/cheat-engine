@@ -37,6 +37,7 @@ shCiBaseCustom() {(set -e
     (
     cd "Cheat Engine/"
     # lazbuild cheatengine.lpi --build-mode="Release 64-Bit O4 AVX2"
+    # find . | grep '\.ppu$\|\.ppl$\|\.o$\|\.or$\|\.res$' | xargs rm
     # find . | grep "\.lpi" | grep -v "\/backup\/"
     PID_LIST=""
     for FILE in \
@@ -76,7 +77,7 @@ shCiBaseCustom() {(set -e
             )" || true
             if [ "$BUILD_MODE" ]
             then
-                printf "lazbuild $FILE --bm=\"$BUILD_MODE\"\n"
+                printf "\n\n\n\nlazbuild $FILE --bm=\"$BUILD_MODE\"\n"
                 lazbuild "$FILE" --bm="$BUILD_MODE" &
             else
                 printf "lazbuild $FILE\n"
