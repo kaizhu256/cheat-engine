@@ -25,7 +25,7 @@ shCiBaseCustom() {(set -e
     then
         mv lazarus /c/
     fi
-    export PATH="$PATH:/c/lazarus/"
+    export PATH="$PATH:/c/lazarus/:/c/lazarus/fpc/3.2.2/bin/x86_64-win64/"
     # .github_cache - save
     if [ "$GITHUB_ACTION" ] && [ ! -d .github_cache/lazarus/ ]
     then
@@ -37,10 +37,35 @@ shCiBaseCustom() {(set -e
     (
     cd "Cheat Engine/"
     # lazbuild cheatengine.lpi --build-mode="Release 64-Bit O4 AVX2"
-    find . \
-        | grep "\.lpi$" \
-        | tr '\n' '\0' \
-        | xargs -0 -n1 lazbuild --build-mode="Release 64-Bit"
+    for FILE in $(find . | grep "\.lpi")
+    # lazbuild "Release 64-Bit" allochook/allochook.lpi
+    # lazbuild "Release 64-Bit" backup/cheatengine.lpi
+    # lazbuild "Release 64-Bit" cecore.lpi
+    # lazbuild "Release 64-Bit" cepack/cepack.lpi
+    # lazbuild "Release 64-Bit" ceregreset/ceregreset.lpi
+    lazbuild "Release 64-Bit" cheatengine.lpi
+    # lazbuild "Release 64-Bit" \
+    #     "dbk32/Kernelmodule unloader/Kernelmodule unloader.lpi"
+    # lazbuild "Release 64-Bit" debuggertest/debuggertest.lpi
+    # lazbuild "Release 64-Bit" launcher/cheatengine.lpi
+    # lazbuild "Release 64-Bit" luaclient/backup/luaclient.lpi
+    lazbuild "Release 64-Bit" luaclient/luaclient.lpi
+    lazbuild "Release 64-Bit" luaclient/testapp/luaclienttest.lpi
+    # lazbuild "Release 64-Bit" plugin/DebugEventLog/src/DebugEventLog.lpi
+    lazbuild "Release 64-Bit" plugin/example/exampleplugin.lpi
+    # lazbuild "Release 64-Bit" plugin/forcedinjection/forcedinjection.lpi
+    # lazbuild "Release 64-Bit" sfx/level2/standalonephase2.lpi
+    # lazbuild "Release 64-Bit" speedhack/backup/speedhack.lpi
+    lazbuild "Release 64-Bit" speedhack/speedhack.lpi
+    # lazbuild "Release 64-Bit" speedhack/speedhacktest/speedhacktest.lpi
+    # lazbuild "Release 64-Bit" Tutorial/backup/tutorial.lpi.bak
+    lazbuild "Release 64-Bit" Tutorial/graphical/project1.lpi
+    lazbuild "Release 64-Bit" Tutorial/tutorial.lpi
+    # lazbuild "Release 64-Bit" VEHDebug/backup/vehdebug.lpi
+    lazbuild "Release 64-Bit" VEHDebug/vehdebug.lpi
+    # lazbuild "Release 64-Bit" windowsrepair/windowsrepair.lpi
+    # lazbuild "Release 64-Bit" winhook/winhook.lpi
+    # lazbuild "Release 64-Bit" xmplayer/xmplayer.lpi
     )
     #
     # upload artifact
