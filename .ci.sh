@@ -37,7 +37,7 @@ shCiBaseCustom() {(set -e
     (
     cd "Cheat Engine/"
     # lazbuild cheatengine.lpi --build-mode="Release 64-Bit O4 AVX2"
-    for FILE in $(find . | grep "\.lpi")
+    # for FILE in $(find . | grep "\.lpi")
     # lazbuild "Release 64-Bit" allochook/allochook.lpi
     # lazbuild "Release 64-Bit" backup/cheatengine.lpi
     # lazbuild "Release 64-Bit" cecore.lpi
@@ -46,7 +46,7 @@ shCiBaseCustom() {(set -e
     lazbuild "Release 64-Bit" cheatengine.lpi
     # lazbuild "Release 64-Bit" \
     #     "dbk32/Kernelmodule unloader/Kernelmodule unloader.lpi"
-    # lazbuild "Release 64-Bit" debuggertest/debuggertest.lpi
+    lazbuild "Release 64-Bit" debuggertest/debuggertest.lpi
     # lazbuild "Release 64-Bit" launcher/cheatengine.lpi
     # lazbuild "Release 64-Bit" luaclient/backup/luaclient.lpi
     lazbuild "Release 64-Bit" luaclient/luaclient.lpi
