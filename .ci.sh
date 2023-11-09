@@ -37,41 +37,41 @@ shCiBaseCustom() {(set -e
     (
     cd "Cheat Engine/"
     # lazbuild cheatengine.lpi --build-mode="Release 64-Bit O4 AVX2"
-    # find . | grep "\.ppu$\|\.ppl$\|\.o$\|\.or$" | xargs rm
+    # !! # find . | grep "\.ppu$\|\.ppl$\|\.o$\|\.or$" | xargs rm
     # find . | grep "\.lpi" | grep -v "\/backup\/"
     PID_LIST=""
-    for FILE in $(
-        find . \
-            | grep "\.lpi" \
-            | grep -v "\/backup\/" \
-    )
+    for FILE in $(find . | grep "\.lpi" | grep -v "\/backup\/")
     # !! for FILE in \
     do
+        if [ "$FILE" = "./dbk32/Kernelmodule" ]
+        then
+            FILE="./dbk32/Kernelmodule unloader/Kernelmoduleunloader.lpi"
+        fi
         case $FILE in
-        "./Tutorial/graphical/project1.lpi") ;;
-        "./Tutorial/tutorial.lpi") ;;
-        "./VEHDebug/vehdebug.lpi") ;;
-        "./allochook/allochook.lpi") ;;
-        "./cecore.lpi") ;;
-        "./cepack/cepack.lpi") ;;
-        "./ceregreset/ceregreset.lpi") ;;
-        "./cheatengine.lpi") ;;
-        "./dbk32/Kernelmodule unloader/Kernelmoduleunloader.lpi") ;;
-        "./dbk32/Kernelmodule") ;;
-        "./debuggertest/debuggertest.lpi") ;;
-        "./launcher/cheatengine.lpi") ;;
-        "./luaclient/luaclient.lpi") ;;
-        "./luaclient/testapp/luaclienttest.lpi") ;;
-        "./plugin/DebugEventLog/src/DebugEventLog.lpi") ;;
-        "./plugin/example/exampleplugin.lpi") ;;
-        "./plugin/forcedinjection/forcedinjection.lpi") ;;
-        "./sfx/level2/standalonephase2.lpi") ;;
-        "./speedhack/speedhack.lpi") ;;
-        "./speedhack/speedhacktest/speedhacktest.lpi") ;;
-        "./windowsrepair/windowsrepair.lpi") ;;
-        "./winhook/winhook.lpi") ;;
-        "./xmplayer/xmplayer.lpi") ;;
-        "unloader/Kernelmoduleunloader.lpi") ;;
+        # "./dbk32/Kernelmodule unloader/Kernelmoduleunloader.lpi") ;;
+        ./Tutorial/graphical/project1.lpi) ;;
+        # ./Tutorial/tutorial.lpi) ;;
+        # ./VEHDebug/vehdebug.lpi) ;;
+        # ./allochook/allochook.lpi) ;;
+        ./cecore.lpi) ;;
+        # !! ./cepack/cepack.lpi) ;;
+        ./ceregreset/ceregreset.lpi) ;;
+        ./cheatengine.lpi) ;;
+        ./dbk32/Kernelmodule) ;;
+        ./debuggertest/debuggertest.lpi) ;;
+        ./launcher/cheatengine.lpi) ;;
+        # ./luaclient/luaclient.lpi) ;;
+        # !! ./luaclient/testapp/luaclienttest.lpi) ;;
+        ./plugin/DebugEventLog/src/DebugEventLog.lpi) ;;
+        ./plugin/example/exampleplugin.lpi) ;;
+        ./plugin/forcedinjection/forcedinjection.lpi) ;;
+        ./sfx/level2/standalonephase2.lpi) ;;
+        # ./speedhack/speedhack.lpi) ;;
+        ./speedhack/speedhacktest/speedhacktest.lpi) ;;
+        ./windowsrepair/windowsrepair.lpi) ;;
+        ./winhook/winhook.lpi) ;;
+        ./xmplayer/xmplayer.lpi) ;;
+        unloader/Kernelmoduleunloader.lpi) ;;
         *)
             BUILD_COMMAND="$(node --input-type=module --eval '
 import moduleFs from "fs";
@@ -116,7 +116,7 @@ import moduleFs from "fs";
 }());
 ' "$FILE")" # '
             printf "\n\n\n\n$BUILD_COMMAND\n"
-            # !! eval "$BUILD_COMMAND"
+            eval "$BUILD_COMMAND"
             # !! PID_LIST="$PID_LIST $!"
             ;;
         esac
