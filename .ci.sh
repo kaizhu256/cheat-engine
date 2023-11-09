@@ -37,35 +37,39 @@ shCiBaseCustom() {(set -e
     (
     cd "Cheat Engine/"
     # lazbuild cheatengine.lpi --build-mode="Release 64-Bit O4 AVX2"
-    # for FILE in $(find . | grep "\.lpi")
-    # lazbuild "Release 64-Bit" allochook/allochook.lpi
-    # lazbuild "Release 64-Bit" backup/cheatengine.lpi
-    # lazbuild "Release 64-Bit" cecore.lpi
-    # lazbuild "Release 64-Bit" cepack/cepack.lpi
-    # lazbuild "Release 64-Bit" ceregreset/ceregreset.lpi
-    lazbuild "Release 64-Bit" cheatengine.lpi
-    # lazbuild "Release 64-Bit" \
+    for FILE in $(find . | grep "\.lpi")
+    do
+        printf "\nlazbuild $FILE ...\n"
+        grep -i "item. name=" "$FILE"
+    done
+    # lazbuild --bm="Release 64-Bit" allochook/allochook.lpi
+    # lazbuild --bm="Release 64-Bit" backup/cheatengine.lpi
+    # lazbuild --bm="Release 64-Bit" cecore.lpi
+    # lazbuild --bm="Release 64-Bit" cepack/cepack.lpi
+    # lazbuild --bm="Release 64-Bit" ceregreset/ceregreset.lpi
+    lazbuild --bm="Release 64-Bit" cheatengine.lpi
+    # lazbuild --bm="Release 64-Bit" \
     #     "dbk32/Kernelmodule unloader/Kernelmodule unloader.lpi"
-    lazbuild "Release 64-Bit" debuggertest/debuggertest.lpi
-    # lazbuild "Release 64-Bit" launcher/cheatengine.lpi
-    # lazbuild "Release 64-Bit" luaclient/backup/luaclient.lpi
-    lazbuild "Release 64-Bit" luaclient/luaclient.lpi
-    lazbuild "Release 64-Bit" luaclient/testapp/luaclienttest.lpi
-    # lazbuild "Release 64-Bit" plugin/DebugEventLog/src/DebugEventLog.lpi
-    lazbuild "Release 64-Bit" plugin/example/exampleplugin.lpi
-    # lazbuild "Release 64-Bit" plugin/forcedinjection/forcedinjection.lpi
-    # lazbuild "Release 64-Bit" sfx/level2/standalonephase2.lpi
-    # lazbuild "Release 64-Bit" speedhack/backup/speedhack.lpi
-    lazbuild "Release 64-Bit" speedhack/speedhack.lpi
-    # lazbuild "Release 64-Bit" speedhack/speedhacktest/speedhacktest.lpi
-    # lazbuild "Release 64-Bit" Tutorial/backup/tutorial.lpi.bak
-    lazbuild "Release 64-Bit" Tutorial/graphical/project1.lpi
-    lazbuild "Release 64-Bit" Tutorial/tutorial.lpi
-    # lazbuild "Release 64-Bit" VEHDebug/backup/vehdebug.lpi
-    lazbuild "Release 64-Bit" VEHDebug/vehdebug.lpi
-    # lazbuild "Release 64-Bit" windowsrepair/windowsrepair.lpi
-    # lazbuild "Release 64-Bit" winhook/winhook.lpi
-    # lazbuild "Release 64-Bit" xmplayer/xmplayer.lpi
+    lazbuild --bm="Release 64-Bit" debuggertest/debuggertest.lpi
+    # lazbuild --bm="Release 64-Bit" launcher/cheatengine.lpi
+    # lazbuild --bm="Release 64-Bit" luaclient/backup/luaclient.lpi
+    lazbuild --bm="Release 64-Bit" luaclient/luaclient.lpi
+    lazbuild --bm="Release 64-Bit" luaclient/testapp/luaclienttest.lpi
+    # lazbuild --bm="Release 64-Bit" plugin/DebugEventLog/src/DebugEventLog.lpi
+    lazbuild --bm="Release 64-Bit" plugin/example/exampleplugin.lpi
+    # lazbuild --bm="Release 64-Bit" plugin/forcedinjection/forcedinjection.lpi
+    # lazbuild --bm="Release 64-Bit" sfx/level2/standalonephase2.lpi
+    # lazbuild --bm="Release 64-Bit" speedhack/backup/speedhack.lpi
+    lazbuild --bm="Release 64-Bit" speedhack/speedhack.lpi
+    # lazbuild --bm="Release 64-Bit" speedhack/speedhacktest/speedhacktest.lpi
+    # lazbuild --bm="Release 64-Bit" Tutorial/backup/tutorial.lpi.bak
+    lazbuild --bm="Release 64-Bit" Tutorial/graphical/project1.lpi
+    lazbuild --bm="Release 64-Bit" Tutorial/tutorial.lpi
+    # lazbuild --bm="Release 64-Bit" VEHDebug/backup/vehdebug.lpi
+    lazbuild --bm="Release 64-Bit" VEHDebug/vehdebug.lpi
+    # lazbuild --bm="Release 64-Bit" windowsrepair/windowsrepair.lpi
+    # lazbuild --bm="Release 64-Bit" winhook/winhook.lpi
+    # lazbuild --bm="Release 64-Bit" xmplayer/xmplayer.lpi
     )
     #
     # upload artifact
