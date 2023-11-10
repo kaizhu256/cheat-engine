@@ -4,6 +4,64 @@
 # sh jslint_ci.sh shCiBuildWasm
 # sh jslint_ci.sh shSqlmathUpdate
 
+shCheatengineUpdate() {(set -e
+# this function will update "Cheat Engine/bin"
+    . "$HOME/myci2.sh" : && shMyciUpdate
+    (
+    cd "Cheat Engine/bin"
+    rm * 2>/dev/null || true
+    git checkout HEAD .
+    PID_LIST=""
+    for FILE in \
+        "Runtime Modifier.exe" \
+        CED3D10Hook.dll \
+        CED3D10Hook64.dll \
+        CED3D11Hook.dll \
+        CED3D11Hook64.dll \
+        DebugEventLog.dll \
+        DebuggerTest-x86_64.exe \
+        allochook-x86_64.dll \
+        ced3d9hook.dll \
+        ced3d9hook64.dll \
+        cepack.exe \
+        cheatengine-x86_64.exe \
+        d3dhook.dll \
+        d3dhook64.dll \
+        exampleplugin.dll \
+        forcedinjection-x86_64.dll \
+        gtutorial-i386.exe \
+        kernelmoduleunloader-i386.exe \
+        libipt-32.dll \
+        libipt-64.dll \
+        libmikmod32.dll \
+        libmikmod64.dll \
+        lua53-32.dll \
+        lua53-64.dll \
+        luaclient-x86_64.dll \
+        luaclienttest.exe \
+        rt-mod-regreset.exe \
+        speedhack-x86_64.dll \
+        speedhacktest-x86_64.exe \
+        tutorial-x86_64.exe \
+        vehdebug-x86_64.dll \
+        windowsrepair.exe \
+        winhook-x86_64.dll
+    do
+        if [ ! -f "$FILE" ]
+        then
+            (
+            printf "downloading $FILE ...\n"
+            shGithubFileDownload \
+                "kaizhu256/cheat-engine/artifact/branch-alpha/$FILE"
+            ) &
+            PID_LIST="$PID_LIST $!"
+        fi
+    done
+    shPidListWait build_ext "$PID_LIST"
+    printf "\ndownloading done\n"
+    )
+)}
+
 shCiBaseCustom() {(set -e
 # this function will run custom-code for base-ci
     # .github_cache - restore
