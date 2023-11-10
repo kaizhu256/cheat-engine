@@ -46,6 +46,7 @@ wheelhouse/
 *.ppu
 *.res
 .DS_Store
+Debug/
 backup/
 bin/
 lib/

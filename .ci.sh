@@ -37,7 +37,6 @@ shCiBaseCustom() {(set -e
     (
     cd "Cheat Engine/"
     # lazbuild cheatengine.lpi --build-mode="Release 64-Bit O4 AVX2"
-    # PID_LIST=""
     for FILE in $(find . | grep "\.lpi" | grep -v "\/backup\/" | sort)
     do
         if [ "$FILE" = "./dbk32/Kernelmodule" ]
@@ -121,13 +120,10 @@ import moduleFs from "fs";
             if [ "$npm_config_mode_dryrun" != 1 ]
             then
                 eval "$BUILD_COMMAND"
-                # eval "$BUILD_COMMAND" &
-                # PID_LIST="$PID_LIST $!"
             fi
             ;;
         esac
     done
-    # shPidListWait build_ext "$PID_LIST"
     printf "0\n"
     )
     #
@@ -201,7 +197,7 @@ shCiBaseCustomArtifactUpload() {(set -e
         | grep -v "\/bin\/" \
         | sort \
         | tr "\n" "\0" \
-        | xargs -0 -I{} printf 'cp "{}" aa\n'
+        | xargs -0 -I{} cp "{}" "branch-$GITHUB_BRANCH0/"
     # git commit
     git add .
     if (git commit -am "$COMMIT_MESSAGE")
