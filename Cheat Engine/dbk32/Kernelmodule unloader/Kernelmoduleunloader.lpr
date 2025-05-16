@@ -406,7 +406,7 @@ begin
       end;
 
       try
-        s:='CEDRIVER73';
+        s:='MYDFDRIVER73';
         getmem(apppath,250);
         GetModuleFileName(0,apppath,250);
 
