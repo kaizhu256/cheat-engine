@@ -4,7 +4,7 @@ object formSettings: TformSettings
   Width = 785
   Height = 574
   BorderIcons = [biSystemMenu]
-  Caption = 'Cheat Engine settings'
+  Caption = 'mydfdriver settings'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -1229,7 +1229,7 @@ object formSettings: TformSettings
   end
   object OpenDialog1: TOpenDialog
     DefaultExt = 'DLL'
-    Filter = 'Cheat Engine Plugins (*.dll)|*.dll'
+    Filter = 'mydfdriver Plugins (*.dll)|*.dll'
     Left = 52
     Top = 264
   end

@@ -164,7 +164,7 @@ msgid "This is not a valid address"
 msgstr "這不是有效的位址"
 
 #: advancedoptionsunit.rsaocheatenginefailedtogetintotheconfigofselectedprogram
-msgid "Cheat Engine failed to get into the config of the selected program."
+msgid "mydfdriver failed to get into the config of the selected program."
 msgstr ""
 
 #: advancedoptionsunit.rsaoerrorwhiletryingtocreatethesharedkeystructureetc
@@ -1686,7 +1686,7 @@ msgstr "無法使用 bcrypt"
 
 #: feces.rscheatenginesignaturefiles
 msgid "Cheat engine signature files"
-msgstr "Cheat Engine 簽名檔"
+msgstr "mydfdriver 簽名檔"
 
 #: feces.rscouldnotopenthealgorithmprovider
 msgid "Could not open the algorithm provider"
@@ -2559,11 +2559,11 @@ msgid "Auto assembler"
 msgstr "自動組譯器"
 
 #: frmautoinjectunit.rsceafilter
-msgid "Cheat Engine Assembly (*.CEA)|*.CEA|All Files ( *.* )|*.*"
+msgid "mydfdriver Assembly (*.CEA)|*.CEA|All Files ( *.* )|*.*"
 msgstr ""
 
 #: frmautoinjectunit.rscegafilter
-msgid "Cheat Engine GNU Assembly (*.CEGA)|*.CEGA|All Files ( *.* )|*.*"
+msgid "mydfdriver GNU Assembly (*.CEGA)|*.CEGA|All Files ( *.* )|*.*"
 msgstr ""
 
 #: frmautoinjectunit.rscodeinjecttemplate
@@ -4566,7 +4566,7 @@ msgstr "取消"
 
 #: mainunit.rsceerror
 msgid "CE Error:"
-msgstr "Cheat Engine 錯誤："
+msgstr "mydfdriver 錯誤："
 
 #: mainunit.rschangevalue
 msgctxt "mainunit.rschangevalue"
@@ -4575,8 +4575,8 @@ msgstr "修改數值"
 
 #: mainunit.rscheatengine
 msgctxt "mainunit.rscheatengine"
-msgid "Cheat Engine"
-msgstr "Cheat Engine"
+msgid "mydfdriver"
+msgstr "mydfdriver"
 
 #: mainunit.rschooselanguage
 msgid "Which language do you wish to use?"
@@ -5246,8 +5246,8 @@ msgstr "聖誕快樂，新年吉祥"
 
 #: mainunit2.cename
 msgctxt "mainunit2.cename"
-msgid "Cheat Engine 7.2"
-msgstr "Cheat Engine 7.2"
+msgid "mydfdriver 7.2"
+msgstr "mydfdriver 7.2"
 
 #: mainunit2.rsdbvmmissedentries
 msgid "Missed %d entries due to a too small buffer or slow copy operation"
@@ -8154,8 +8154,8 @@ msgstr "關於 Cheat Engine"
 
 #: tabout.groupbox1.caption
 msgctxt "tabout.groupbox1.caption"
-msgid "Cheat Engine"
-msgstr "Cheat Engine"
+msgid "mydfdriver"
+msgstr "mydfdriver"
 
 #: tabout.label1.caption
 msgid "Made by: Dark Byte"
@@ -9277,8 +9277,8 @@ msgid "Delete"
 msgstr "刪除"
 
 #: tformsettings.caption
-msgid "Cheat Engine settings"
-msgstr "Cheat Engine 設定"
+msgid "mydfdriver settings"
+msgstr "mydfdriver 設定"
 
 #: tformsettings.cballocsaddtowatchedregions.caption
 msgctxt "tformsettings.cballocsaddtowatchedregions.caption"
@@ -15057,8 +15057,8 @@ msgstr ""
 
 #: tmainform.caption
 msgctxt "tmainform.caption"
-msgid "Cheat Engine 7.2"
-msgstr "Cheat Engine 7.2"
+msgid "mydfdriver 7.2"
+msgstr "mydfdriver 7.2"
 
 #: tmainform.cbcasesensitive.caption
 msgctxt "TMAINFORM.CBCASESENSITIVE.CAPTION"
@@ -15346,8 +15346,8 @@ msgid "Memory Scan Options"
 msgstr ""
 
 #: tmainform.helpindex1.caption
-msgid "Cheat Engine Help"
-msgstr "Cheat Engine 幫助"
+msgid "mydfdriver Help"
+msgstr "mydfdriver 幫助"
 
 #: tmainform.label1.caption
 msgctxt "TMAINFORM.LABEL1.CAPTION"
@@ -15406,12 +15406,12 @@ msgid "Select All"
 msgstr "全選"
 
 #: tmainform.menuitem12.caption
-msgid "Cheat Engine Tutorial (64-Bit)"
-msgstr "Cheat Engine 教學 (64 位元)"
+msgid "mydfdriver Tutorial (64-Bit)"
+msgstr "mydfdriver 教學 (64 位元)"
 
 #: tmainform.menuitem15.caption
-msgid "Cheat Engine Tutorial Games"
-msgstr "Cheat Engine 遊戲教學"
+msgid "mydfdriver Tutorial Games"
+msgstr "mydfdriver 遊戲教學"
 
 #: tmainform.menuitem2.caption
 msgid "New Item1"
@@ -15748,8 +15748,8 @@ msgid "Table"
 msgstr ""
 
 #: tmainform.mitutorial.caption
-msgid "Cheat Engine Tutorial"
-msgstr "Cheat Engine 教學"
+msgid "mydfdriver Tutorial"
+msgstr "mydfdriver 教學"
 
 #: tmainform.miundovalue.caption
 msgctxt "tmainform.miundovalue.caption"
@@ -17668,7 +17668,7 @@ msgid "2 Bytes"
 msgstr "2 位元組"
 
 #: vehdebugger.rscheatenginefailedtogetintotheconfig
-msgid "Cheat Engine failed to get into the config of the selected program. (Error=%s)"
+msgid "mydfdriver failed to get into the config of the selected program. (Error=%s)"
 msgstr ""
 
 #: vehdebugger.rserrorwhiletryingtocreatetheconfigurationstructure

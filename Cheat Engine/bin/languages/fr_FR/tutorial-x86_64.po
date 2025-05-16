@@ -18,7 +18,7 @@ msgid "Next"
 msgstr "Suivant"
 
 #: tform1.caption
-msgid "Cheat Engine Tutorial v3.3"
+msgid "mydfdriver Tutorial v3.3"
 msgstr "Tutoriel Moteur de Triche Version 3.3"
 
 #: tform1.edtpassword.hint
@@ -186,7 +186,7 @@ msgid "And you can always check out the Cheat Engine Forum for useful informatio
 msgstr "Et vous pouvez toujours vérifier le Forum de Cheat Engine pour obtenir des informations utiles et demander de l'aide."
 
 #: tform4.label4.caption
-msgid "Cheat Engine Forum"
+msgid "mydfdriver Forum"
 msgstr "Forum Cheat Engine"
 
 #: tform5.button1.caption

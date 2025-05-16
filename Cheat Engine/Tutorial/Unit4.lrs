@@ -29,6 +29,6 @@ LazarusResources.Add('TForm4','FORMDATA',[
   +'r help'#11'ParentColor'#8#8'WordWrap'#9#0#0#6'TLabel'#6'Label4'#21'AnchorSi'
   +'deTop.Control'#7#6'Label3'#18'AnchorSideTop.Side'#7#9'asrBottom'#6'Cursor'#7
   +#11'crHandPoint'#4'Left'#3#160#0#6'Height'#2#15#3'Top'#2'H'#5'Width'#2'l'#7
-  +'Caption'#6#18'Cheat Engine Forum'#11'ParentColor'#8#7'OnClick'#7#11'Label4C'
+  +'Caption'#6#18'mydfdriver Forum'#11'ParentColor'#8#7'OnClick'#7#11'Label4C'
   +'lick'#0#0#0
 ]);

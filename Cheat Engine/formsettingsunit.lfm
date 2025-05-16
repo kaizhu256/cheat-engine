@@ -5,7 +5,7 @@ object formSettings: TformSettings
   Width = 865
   AutoSize = True
   BorderIcons = [biSystemMenu]
-  Caption = 'Cheat Engine settings'
+  Caption = 'mydfdriver settings'
   ClientHeight = 627
   ClientWidth = 865
   OnChangeBounds = FormChangeBounds
@@ -2717,7 +2717,7 @@ object formSettings: TformSettings
   end
   object OpenDialog1: TOpenDialog
     DefaultExt = '.DLL'
-    Filter = 'Cheat Engine Plugins (*.dll)|*.dll'
+    Filter = 'mydfdriver Plugins (*.dll)|*.dll'
     Left = 52
     Top = 264
   end

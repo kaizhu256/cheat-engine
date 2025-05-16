@@ -54,14 +54,14 @@ begin
     reg.RootKey := HKEY_LOCAL_MACHINE;
     if reg.OpenKey('\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Image File Execution Options',false) then
     begin
-      reg.deletekey('Cheat Engine.exe');
+      reg.deletekey('mydfdriver.exe');
       reg.deletekey('cheatengine-i386.exe');
       reg.deletekey('cheatengine-x86_64.exe');
     end;
 
     if reg.OpenKey('\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options',false) then
     begin
-      reg.deletekey('Cheat Engine.exe');
+      reg.deletekey('mydfdriver.exe');
       reg.deletekey('cheatengine-i386.exe');
       reg.deletekey('cheatengine-x86_64.exe');
     end;

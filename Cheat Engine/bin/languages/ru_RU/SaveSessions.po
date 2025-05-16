@@ -3,7 +3,7 @@ msgid "Open a process first"
 msgstr "Сначала откройте процесс"
 
 #: SS-CESF
-msgid "Cheat Engine Scan files"
+msgid "mydfdriver Scan files"
 msgstr "Файлы сканирования Cheat Engine"
 
 #: SS-OaPFaDaS

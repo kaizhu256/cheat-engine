@@ -50,8 +50,8 @@ build_script:
 # scripts to run after build
 after_build:
   # zip the build archive
-  - tree /F "Cheat Engine\bin"
-  - 7z a Cheat-Engine-%APPVEYOR_REPO_COMMIT%.zip "Cheat Engine\bin"
+  - tree /F "mydfdriver\bin"
+  - 7z a Cheat-Engine-%APPVEYOR_REPO_COMMIT%.zip "mydfdriver\bin"
 
 #---------------------------------#
 #       tests configuration       #

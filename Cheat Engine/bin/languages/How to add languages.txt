@@ -35,12 +35,12 @@ then translate the .po files
 e.g:
 before:
 #: mainunit.rscheatengine
-msgid "Cheat Engine"
+msgid "mydfdriver"
 msgstr ""
 
 after:
 #: mainunit.rscheatengine
-msgid "Cheat Engine"
+msgid "mydfdriver"
 msgstr "Valsspeel motor"
 
 

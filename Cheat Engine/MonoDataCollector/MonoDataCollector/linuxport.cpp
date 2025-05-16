@@ -300,7 +300,7 @@ __attribute__((constructor)) void moduleinit(void)
   pthread_t lpep;
 
 #ifdef __linux__
-  openlog((char*)"Cheat Engine MDC", 0, LOG_USER);
+  openlog((char*)"mydfdriver MDC", 0, LOG_USER);
 #endif
 
   OutputDebugString("monodatacollector moduleinit");

@@ -2051,7 +2051,7 @@ object MemoryBrowser: TMemoryBrowser
   end
   object OpenMemory: TOpenDialog
     DefaultExt = '.CEM'
-    Filter = 'Cheat Engine Memory file|*.CEM|All Files (*.*)|*.*'
+    Filter = 'mydfdriver Memory file|*.CEM|All Files (*.*)|*.*'
     FilterIndex = 0
     Left = 152
     Top = 80

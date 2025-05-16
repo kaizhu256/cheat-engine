@@ -22,7 +22,7 @@ object About: TAbout
     Width = 488
     Align = alClient
     AutoSize = True
-    Caption = 'Cheat Engine'
+    Caption = 'mydfdriver'
     ClientHeight = 291
     ClientWidth = 478
     TabOrder = 0

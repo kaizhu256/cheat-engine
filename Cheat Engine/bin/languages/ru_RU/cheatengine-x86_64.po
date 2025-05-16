@@ -159,8 +159,8 @@ msgid "This is not a valid address"
 msgstr "Этот адрес недопустим"
 
 #: advancedoptionsunit.rsaocheatenginefailedtogetintotheconfigofselectedprogram
-msgid "Cheat Engine failed to get into the config of the selected program."
-msgstr "Cheat Engine не удалось попасть в конфигурацию выбранной программы."
+msgid "mydfdriver failed to get into the config of the selected program."
+msgstr "mydfdriver не удалось попасть в конфигурацию выбранной программы."
 
 #: advancedoptionsunit.rsaoerrorwhiletryingtocreatethesharedkeystructureetc
 msgid "Error while trying to create the shared key structure! (Which efficiently renders this whole feature useless)"
@@ -2364,12 +2364,12 @@ msgid "Auto assembler"
 msgstr "Автоассемблер"
 
 #: frmautoinjectunit.rsceafilter
-msgid "Cheat Engine Assembly (*.CEA)|*.CEA|All Files ( *.* )|*.*"
-msgstr "Cheat Engine Ассемблирование (*.CEA)|*.CEA|Все файлы ( *.* )|*.*"
+msgid "mydfdriver Assembly (*.CEA)|*.CEA|All Files ( *.* )|*.*"
+msgstr "mydfdriver Ассемблирование (*.CEA)|*.CEA|Все файлы ( *.* )|*.*"
 
 #: frmautoinjectunit.rscegafilter
-msgid "Cheat Engine GNU Assembly (*.CEGA)|*.CEGA|All Files ( *.* )|*.*"
-msgstr "Cheat Engine GNU Ассемблирование (*.CEGA)|*.CEGA|Все файлы ( *.* )|*.*"
+msgid "mydfdriver GNU Assembly (*.CEGA)|*.CEGA|All Files ( *.* )|*.*"
+msgstr "mydfdriver GNU Ассемблирование (*.CEGA)|*.CEGA|Все файлы ( *.* )|*.*"
 
 #: frmautoinjectunit.rscodeinjecttemplate
 msgid "Code inject template"
@@ -4141,7 +4141,7 @@ msgstr "createfoundlist нуждается в объекте memscan в каче
 
 #: luahandler.rscheatengineisbeingafag
 msgid "Cheatengine is being a fag"
-msgstr "Cheat Engine не испытывает желание делать то, что вы хотите"
+msgstr "mydfdriver не испытывает желание делать то, что вы хотите"
 
 #: luahandler.rsconditionalbreakpointerror
 msgid "Conditional breakpoint error"
@@ -8629,7 +8629,7 @@ msgid "Find what writes to the address pointed at by this pointer"
 msgstr "Найти инструкции, записывающие по указываемому адресу"
 
 #: tformpointerorpointee.caption
-msgid "Cheat Engine Pointer"
+msgid "mydfdriver Pointer"
 msgstr "Указатель"
 
 #: tformpointerorpointee.label1.caption
@@ -8708,7 +8708,7 @@ msgid "Delete"
 msgstr "Удалить"
 
 #: tformsettings.caption
-msgid "Cheat Engine settings"
+msgid "mydfdriver settings"
 msgstr "Настройки Cheat Engine"
 
 #: tformsettings.cballocsaddtowatchedregions.caption
@@ -15984,7 +15984,7 @@ msgstr "Обработывать данные позже"
 
 #: tfrmultimap2.rblogtofolder.hint
 msgid "CE will write the results to disk as quickly as possible but won't process it until the recording is stopped, or a filter function is being used."
-msgstr "Cheat Engine запишет результат на диск как можно быстрее, но не будет обрабатывать его до тех пор, пока запись не будет остановлена или не будет использована функция фильтра."
+msgstr "mydfdriver запишет результат на диск как можно быстрее, но не будет обрабатывать его до тех пор, пока запись не будет остановлена или не будет использована функция фильтра."
 
 #: tfrmultimap2.rbruntimeparsing.caption
 msgid "Process data while recording"
@@ -16561,7 +16561,7 @@ msgid "Memory Scan Options"
 msgstr "Параметры сканирования памяти"
 
 #: tmainform.helpindex1.caption
-msgid "Cheat Engine Help"
+msgid "mydfdriver Help"
 msgstr "Справка"
 
 #: tmainform.label1.caption
@@ -16610,11 +16610,11 @@ msgid "Select All"
 msgstr "Выбрать все"
 
 #: tmainform.menuitem12.caption
-msgid "Cheat Engine Tutorial (64-Bit)"
+msgid "mydfdriver Tutorial (64-Bit)"
 msgstr "Учебное руководство (64-битная версия)"
 
 #: tmainform.menuitem15.caption
-msgid "Cheat Engine Tutorial Games"
+msgid "mydfdriver Tutorial Games"
 msgstr "Игровое учебное руководство"
 
 #: tmainform.menuitem7.caption
@@ -16942,7 +16942,7 @@ msgid "Table"
 msgstr "Таблица"
 
 #: tmainform.mitutorial.caption
-msgid "Cheat Engine Tutorial"
+msgid "mydfdriver Tutorial"
 msgstr "Учебное руководство"
 
 #: tmainform.miundovalue.caption
@@ -18626,8 +18626,8 @@ msgid "2 Bytes"
 msgstr "2 Байта"
 
 #: vehdebugger.rscheatenginefailedtogetintotheconfig
-msgid "Cheat Engine failed to get into the config of the selected program. (Error=%s)"
-msgstr "Cheat Engine не смог получить конфигурацию выбранной программы. (Ошибка=%s)"
+msgid "mydfdriver failed to get into the config of the selected program. (Error=%s)"
+msgstr "mydfdriver не смог получить конфигурацию выбранной программы. (Ошибка=%s)"
 
 #: vehdebugger.rserrorwhiletryingtocreatetheconfigurationstructure
 msgid "Error while trying to create the configuration structure! (Which effectively renders this whole feature useless) Errorcode=%s"
@@ -18693,7 +18693,7 @@ msgstr "отсутствует xmplayer.exe"
 msgid "A seek was done for another purpose than getting the position"
 msgstr "Поиск проводился в иных целях, нежели получение позиции"
 
-msgid "Cheat Engine Scan Busy"
+msgid "mydfdriver Scan Busy"
 msgstr "Сканирование занято"
 
 msgid "The previous scan is still being processed. Please wait"

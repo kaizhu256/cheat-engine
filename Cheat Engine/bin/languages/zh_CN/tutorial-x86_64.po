@@ -927,8 +927,8 @@ msgid "Health: 500"
 msgstr "生命值: 500"
 
 #: tform1.caption
-msgid "Cheat Engine Tutorial v3.4"
-msgstr "Cheat Engine 教程 v3.4"
+msgid "mydfdriver Tutorial v3.4"
+msgstr "mydfdriver 教程 v3.4"
 
 #: tform1.btnok.caption
 msgid "OK"

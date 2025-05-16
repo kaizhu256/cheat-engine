@@ -30,7 +30,7 @@ const ceversion=7.5;
   strMyCheatTables='My Mod Tables';
   strSpeedHack='Speedmodifier';
 {$else}
-  strCheatEngine='Cheat Engine';
+  strCheatEngine='mydfdriver';
   strCheatTable='Cheat Table';
   strCheatTableLower='cheat table';
   strCheat='Cheat';

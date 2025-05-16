@@ -160,8 +160,8 @@ msgid "This is not a valid address"
 msgstr "这不是一个有效的地址"
 
 #: advancedoptionsunit.rsaocheatenginefailedtogetintotheconfigofselectedprogram
-msgid "Cheat Engine failed to get into the config of the selected program."
-msgstr "Cheat Engine 未能进入所选程序的配置。"
+msgid "mydfdriver failed to get into the config of the selected program."
+msgstr "mydfdriver 未能进入所选程序的配置。"
 
 #: advancedoptionsunit.rsaoerrorwhiletryingtocreatethesharedkeystructureetc
 msgid "Error while trying to create the shared key structure! (Which efficiently renders this whole feature useless)"
@@ -1663,7 +1663,7 @@ msgstr "不能使用 bcrypt"
 
 #: feces.rscheatenginesignaturefiles
 msgid "Cheat engine signature files"
-msgstr "Cheat Engine 签名文件"
+msgstr "mydfdriver 签名文件"
 
 #: feces.rscouldnotopenthealgorithmprovider
 msgid "Could not open the algorithm provider"
@@ -2517,11 +2517,11 @@ msgid "Auto assembler"
 msgstr "自动汇编程序"
 
 #: frmautoinjectunit.rsceafilter
-msgid "Cheat Engine Assembly (*.CEA)|*.CEA|All Files ( *.* )|*.*"
+msgid "mydfdriver Assembly (*.CEA)|*.CEA|All Files ( *.* )|*.*"
 msgstr ""
 
 #: frmautoinjectunit.rscegafilter
-msgid "Cheat Engine GNU Assembly (*.CEGA)|*.CEGA|All Files ( *.* )|*.*"
+msgid "mydfdriver GNU Assembly (*.CEGA)|*.CEGA|All Files ( *.* )|*.*"
 msgstr ""
 
 #: frmautoinjectunit.rscodeinjecttemplate
@@ -4494,7 +4494,7 @@ msgstr "更改数值"
 
 #: mainunit.rscheatengine
 msgctxt "mainunit.rscheatengine"
-msgid "Cheat Engine"
+msgid "mydfdriver"
 msgstr ""
 
 #: mainunit.rschooselanguage
@@ -5133,7 +5133,7 @@ msgstr "圣诞快乐，新年快乐"
 
 #: mainunit2.cename
 msgctxt "mainunit2.cename"
-msgid "Cheat Engine 7.0"
+msgid "mydfdriver 7.0"
 msgstr ""
 
 #: mainunit2.rsenabledisablespeedhack
@@ -5865,7 +5865,7 @@ msgstr "你只能保护有 .CETRAINER 扩展名的文件"
 
 #: opensave.strcantloadfilepatcher
 msgid "The file patcher can't be loaded by Cheat Engine!"
-msgstr "Cheat Engine 无法加载 file patcher！"
+msgstr "mydfdriver 无法加载 file patcher！"
 
 #: opensave.strcantloadprotectedfile
 msgid "This trainer is protected from being opened by CE. Now go away!!!"
@@ -7996,7 +7996,7 @@ msgstr "关于 Cheat Engine"
 
 #: tabout.groupbox1.caption
 msgctxt "tabout.groupbox1.caption"
-msgid "Cheat Engine"
+msgid "mydfdriver"
 msgstr ""
 
 #: tabout.label1.caption
@@ -9082,8 +9082,8 @@ msgid "Delete"
 msgstr "删除"
 
 #: tformsettings.caption
-msgid "Cheat Engine settings"
-msgstr "Cheat Engine 设置"
+msgid "mydfdriver settings"
+msgstr "mydfdriver 设置"
 
 #: tformsettings.cballocsaddtowatchedregions.caption
 msgctxt "tformsettings.cballocsaddtowatchedregions.caption"
@@ -9369,7 +9369,7 @@ msgstr ""
 
 #: tformsettings.editfreezeinterval.hint
 msgid "The number of milliseconds that Cheat Engine will wait before resetting the frozen addresses to their original value."
-msgstr "Cheat Engine 等待冻结地址重设到它们的原始数值前的毫秒数。"
+msgstr "mydfdriver 等待冻结地址重设到它们的原始数值前的毫秒数。"
 
 #: tformsettings.editfreezeinterval.text
 msgctxt "tformsettings.editfreezeinterval.text"
@@ -9378,7 +9378,7 @@ msgstr ""
 
 #: tformsettings.editupdatefoundinterval.hint
 msgid "The number of milliseconds that Cheat Engine will wait before refreshing the list of found addresses"
-msgstr "Cheat Engine 等待已找到地址列表刷新前的毫秒数"
+msgstr "mydfdriver 等待已找到地址列表刷新前的毫秒数"
 
 #: tformsettings.editupdatefoundinterval.text
 msgctxt "tformsettings.editupdatefoundinterval.text"
@@ -9387,7 +9387,7 @@ msgstr ""
 
 #: tformsettings.editupdateinterval.hint
 msgid "The number of milliseconds that Cheat Engine will wait before refreshing the list of addresses"
-msgstr "Cheat Engine 等待地址列表刷新前的毫秒数"
+msgstr "mydfdriver 等待地址列表刷新前的毫秒数"
 
 #: tformsettings.editupdateinterval.text
 msgctxt "tformsettings.editupdateinterval.text"
@@ -14148,8 +14148,8 @@ msgstr "重新计算新地址"
 
 #: tmainform.caption
 msgctxt "tmainform.caption"
-msgid "Cheat Engine 6.8.3"
-msgstr "Cheat Engine 7.0"
+msgid "mydfdriver 6.8.3"
+msgstr "mydfdriver 7.0"
 
 #: tmainform.cbcasesensitive.caption
 msgctxt "TMAINFORM.CBCASESENSITIVE.CAPTION"
@@ -14457,8 +14457,8 @@ msgid "Memory Scan Options"
 msgstr "内存扫描选项"
 
 #: tmainform.helpindex1.caption
-msgid "Cheat Engine Help"
-msgstr "Cheat Engine 帮助"
+msgid "mydfdriver Help"
+msgstr "mydfdriver 帮助"
 
 #: tmainform.label1.caption
 msgctxt "TMAINFORM.LABEL1.CAPTION"
@@ -14519,12 +14519,12 @@ msgid "Select All"
 msgstr "全选"
 
 #: tmainform.menuitem12.caption
-msgid "Cheat Engine Tutorial (64-Bit)"
-msgstr "Cheat Engine 教程（64位）"
+msgid "mydfdriver Tutorial (64-Bit)"
+msgstr "mydfdriver 教程（64位）"
 
 #: tmainform.menuitem15.caption
-msgid "Cheat Engine Tutorial Games"
-msgstr "Cheat Engine 教程游戏"
+msgid "mydfdriver Tutorial Games"
+msgstr "mydfdriver 教程游戏"
 
 #: tmainform.menuitem2.caption
 msgid "New Item1"
@@ -14853,8 +14853,8 @@ msgid "Table"
 msgstr "表单"
 
 #: tmainform.mitutorial.caption
-msgid "Cheat Engine Tutorial"
-msgstr "Cheat Engine 教程"
+msgid "mydfdriver Tutorial"
+msgstr "mydfdriver 教程"
 
 #: tmainform.miundovalue.caption
 msgid "Undo last edit"
@@ -16665,8 +16665,8 @@ msgid "2 Bytes"
 msgstr "2 字节"
 
 #: vehdebugger.rscheatenginefailedtogetintotheconfig
-msgid "Cheat Engine failed to get into the config of the selected program. (Error=%s)"
-msgstr "Cheat Engine 未能进入所选程序的配置（错误=%s）"
+msgid "mydfdriver failed to get into the config of the selected program. (Error=%s)"
+msgstr "mydfdriver 未能进入所选程序的配置（错误=%s）"
 
 #: vehdebugger.rserrorwhiletryingtocreatetheconfigurationstructure
 msgid "Error while trying to create the configuration structure! (Which effectively renders this whole feature useless) Errorcode=%s"

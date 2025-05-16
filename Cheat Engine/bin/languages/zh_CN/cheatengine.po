@@ -156,8 +156,8 @@ msgid "This is not a valid address"
 msgstr "这不是一个有效的地址"
 
 #: advancedoptionsunit.rsaocheatenginefailedtogetintotheconfigofselectedprogram
-msgid "Cheat Engine failed to get into the config of the selected program."
-msgstr "Cheat Engine 获取所选程序的配置失败."
+msgid "mydfdriver failed to get into the config of the selected program."
+msgstr "mydfdriver 获取所选程序的配置失败."
 
 #: advancedoptionsunit.rsaoerrorwhiletryingtocreatethesharedkeystructureetc
 msgid "Error while trying to create the shared key structure! (Which efficiently renders this whole feature useless)"
@@ -2407,12 +2407,12 @@ msgid "Auto assembler"
 msgstr "自动汇编程序"
 
 #: frmautoinjectunit.rsceafilter
-msgid "Cheat Engine Assembly (*.CEA)|*.CEA|All Files ( *.* )|*.*"
-msgstr "Cheat Engine汇编 (*.CEA)|*.CEA|所有文件 (*.*)|*.*"
+msgid "mydfdriver Assembly (*.CEA)|*.CEA|All Files ( *.* )|*.*"
+msgstr "mydfdriver汇编 (*.CEA)|*.CEA|所有文件 (*.*)|*.*"
 
 #: frmautoinjectunit.rscegafilter
-msgid "Cheat Engine GNU Assembly (*.CEGA)|*.CEGA|All Files ( *.* )|*.*"
-msgstr "Cheat Engine GNU汇编 (*.CEGA)|*.CEGA|所有文件 ( *.* )|*.*"
+msgid "mydfdriver GNU Assembly (*.CEGA)|*.CEGA|All Files ( *.* )|*.*"
+msgstr "mydfdriver GNU汇编 (*.CEGA)|*.CEGA|所有文件 ( *.* )|*.*"
 
 #: frmautoinjectunit.rscodeinjecttemplate
 msgid "Code inject template"
@@ -4088,7 +4088,7 @@ msgstr "createfoundlist 需要一个 memscan 对象作为参数"
 
 #: luahandler.rscheatengineisbeingafag
 msgid "Cheatengine is being a fag"
-msgstr "Cheat Engine 是个吃力的工作"
+msgstr "mydfdriver 是个吃力的工作"
 
 #: luahandler.rsconditionalbreakpointerror
 msgid "Conditional breakpoint error"
@@ -4295,7 +4295,7 @@ msgstr "介于 % 之间"
 
 #: mainunit.rsbringscheatenginetofront
 msgid "brings Cheat Engine to front"
-msgstr "Cheat Engine 总在最前"
+msgstr "mydfdriver 总在最前"
 
 #: mainunit.rsbusy
 msgid "<busy>"
@@ -4316,8 +4316,8 @@ msgid "Change value"
 msgstr "更改值"
 
 #: mainunit.rscheatengine
-msgid "Cheat Engine"
-msgstr "Cheat Engine"
+msgid "mydfdriver"
+msgstr "mydfdriver"
 
 #: mainunit.rschooselanguage
 msgid "Which language do you wish to use?"
@@ -4489,7 +4489,7 @@ msgstr "语言"
 
 #: mainunit.rslicenseexpired
 msgid "Your license to use Cheat Engine has expired. You can buy a license to use cheat engine for 1 month for $200, 6 months for only $1000 and for 1 year for only $1800. If you don't renew your license Cheat Engine will be severely limited in it's abilities. (e.g: Next scan has been disabled)"
-msgstr "Cheat Engine 授权已过期. 你可以购买授权, 每月 $200, 6个月只需 $1000, 1年仅需 $1800. 如果不延长有效期软件将在功能上受到严格的限制. (如: 无法使用再次扫描)"
+msgstr "mydfdriver 授权已过期. 你可以购买授权, 每月 $200, 6个月只需 $1000, 1年仅需 $1800. 如果不延长有效期软件将在功能上受到严格的限制. (如: 无法使用再次扫描)"
 
 #: mainunit.rsloadtheassociatedtable
 msgid "Load the associated table? (%s)"
@@ -4948,7 +4948,7 @@ msgstr "圣诞快乐和新年快乐"
 
 #: mainunit2.cename
 msgctxt "mainunit2.cename"
-msgid "Cheat Engine 6.8.2"
+msgid "mydfdriver 6.8.2"
 msgstr ""
 
 #: mainunit2.rsenabledisablespeedhack
@@ -5651,7 +5651,7 @@ msgstr "你只能保护以 .CETRAINER 为扩展名的文件"
 
 #: opensave.strcantloadfilepatcher
 msgid "The file patcher can't be loaded by Cheat Engine!"
-msgstr "Cheat Engine 无法载入补丁文件!"
+msgstr "mydfdriver 无法载入补丁文件!"
 
 #: opensave.strcantloadprotectedfile
 msgid "This trainer is protected from being opened by CE. Now go away!!!"
@@ -7797,8 +7797,8 @@ msgid "Delete"
 msgstr "删除"
 
 #: tformsettings.caption
-msgid "Cheat Engine settings"
-msgstr "Cheat Engine设置"
+msgid "mydfdriver settings"
+msgstr "mydfdriver设置"
 
 #: tformsettings.cballocsaddtowatchedregions.caption
 msgid "Automatically add allocated memory by CE as watched regions"
@@ -7860,7 +7860,7 @@ msgstr "处理非CE引起的中断"
 
 #: tformsettings.cbhideallwindows.caption
 msgid "Hide some/all windows instead of trying to bring cheat engine to front"
-msgstr "Cheat Engine 置前时隐藏部分或全部的窗口"
+msgstr "mydfdriver 置前时隐藏部分或全部的窗口"
 
 #: tformsettings.cbincremental.caption
 msgid "Incremental value"
@@ -8070,7 +8070,7 @@ msgstr "1024"
 
 #: tformsettings.editfreezeinterval.hint
 msgid "The number of milliseconds that Cheat Engine will wait before resetting the frozen addresses to their original value."
-msgstr "Cheat Engine 等候锁定的地址重置为初始值之间的间隔(毫秒)."
+msgstr "mydfdriver 等候锁定的地址重置为初始值之间的间隔(毫秒)."
 
 #: tformsettings.editfreezeinterval.text
 msgid "100"
@@ -8078,7 +8078,7 @@ msgstr "100"
 
 #: tformsettings.editupdatefoundinterval.hint
 msgid "The number of milliseconds that Cheat Engine will wait before refreshing the list of found addresses"
-msgstr "Cheat Engine 刷新地址列表间隔时间(毫秒)"
+msgstr "mydfdriver 刷新地址列表间隔时间(毫秒)"
 
 #: tformsettings.editupdatefoundinterval.text
 msgid "1000"
@@ -8086,7 +8086,7 @@ msgstr "1000"
 
 #: tformsettings.editupdateinterval.hint
 msgid "The number of milliseconds that Cheat Engine will wait before refreshing the list of addresses"
-msgstr "Cheat Engine 刷新地址列表间隔时间(毫秒)"
+msgstr "mydfdriver 刷新地址列表间隔时间(毫秒)"
 
 #: tformsettings.editupdateinterval.text
 msgctxt "tformsettings.editupdateinterval.text"
@@ -8658,7 +8658,7 @@ msgstr "重新计算新的地址"
 
 #: tmainform.caption
 msgctxt "tmainform.caption"
-msgid "Cheat Engine 6.8.2"
+msgid "mydfdriver 6.8.2"
 msgstr ""
 
 #: tmainform.cbcasesensitive.caption
@@ -8897,8 +8897,8 @@ msgid "Memory Scan Options"
 msgstr "内存扫描选项"
 
 #: tmainform.helpindex1.caption
-msgid "Cheat Engine Help"
-msgstr "Cheat Engine 帮助"
+msgid "mydfdriver Help"
+msgstr "mydfdriver 帮助"
 
 #: tmainform.hint
 msgid " "
@@ -8960,12 +8960,12 @@ msgid "Select All"
 msgstr "选择所有"
 
 #: tmainform.menuitem12.caption
-msgid "Cheat Engine Tutorial (64-Bit)"
-msgstr "Cheat Engine教程(64位)"
+msgid "mydfdriver Tutorial (64-Bit)"
+msgstr "mydfdriver教程(64位)"
 
 #: tmainform.menuitem15.caption
-msgid "Cheat Engine Tutorial Games"
-msgstr "Cheat Engine教程游戏"
+msgid "mydfdriver Tutorial Games"
+msgstr "mydfdriver教程游戏"
 
 #: tmainform.menuitem2.caption
 msgid "New Item1"
@@ -9282,8 +9282,8 @@ msgid "Table"
 msgstr "表单"
 
 #: tmainform.mitutorial.caption
-msgid "Cheat Engine Tutorial"
-msgstr "Cheat Engine教程"
+msgid "mydfdriver Tutorial"
+msgstr "mydfdriver教程"
 
 #: tmainform.miundovalue.caption
 msgid "Undo last edit"
@@ -9691,8 +9691,8 @@ msgid "2 Bytes"
 msgstr "2字节"
 
 #: vehdebugger.rscheatenginefailedtogetintotheconfig
-msgid "Cheat Engine failed to get into the config of the selected program. (Error=%s)"
-msgstr "Cheat Engine 无法获取所选择的配置方案. (错误=%s)"
+msgid "mydfdriver failed to get into the config of the selected program. (Error=%s)"
+msgstr "mydfdriver 无法获取所选择的配置方案. (错误=%s)"
 
 #: vehdebugger.rserrorwhiletryingtocreatetheconfigurationstructure
 msgid "Error while trying to create the configuration structure! (Which effectively renders this whole feature useless) Errorcode=%s"

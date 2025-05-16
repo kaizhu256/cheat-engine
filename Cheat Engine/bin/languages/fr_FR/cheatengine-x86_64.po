@@ -158,7 +158,7 @@ msgid "This is not a valid address"
 msgstr "Ce n'est pas une adresse valide"
 
 #: advancedoptionsunit.rsaocheatenginefailedtogetintotheconfigofselectedprogram
-msgid "Cheat Engine failed to get into the config of the selected program."
+msgid "mydfdriver failed to get into the config of the selected program."
 msgstr ""
 
 #: advancedoptionsunit.rsaoerrorwhiletryingtocreatethesharedkeystructureetc
@@ -2422,11 +2422,11 @@ msgid "Auto assembler"
 msgstr "Auto Assembleur"
 
 #: frmautoinjectunit.rsceafilter
-msgid "Cheat Engine Assembly (*.CEA)|*.CEA|All Files ( *.* )|*.*"
+msgid "mydfdriver Assembly (*.CEA)|*.CEA|All Files ( *.* )|*.*"
 msgstr ""
 
 #: frmautoinjectunit.rscegafilter
-msgid "Cheat Engine GNU Assembly (*.CEGA)|*.CEGA|All Files ( *.* )|*.*"
+msgid "mydfdriver GNU Assembly (*.CEGA)|*.CEGA|All Files ( *.* )|*.*"
 msgstr ""
 
 #: frmautoinjectunit.rscodeinjecttemplate
@@ -4359,7 +4359,7 @@ msgstr "Changer la valeur"
 
 #: mainunit.rscheatengine
 msgctxt "mainunit.rscheatengine"
-msgid "Cheat Engine"
+msgid "mydfdriver"
 msgstr ""
 
 #: mainunit.rschooselanguage
@@ -4997,7 +4997,7 @@ msgstr ""
 
 #: mainunit2.cename
 msgctxt "mainunit2.cename"
-msgid "Cheat Engine 6.8.3"
+msgid "mydfdriver 6.8.3"
 msgstr ""
 
 #: mainunit2.rsenabledisablespeedhack
@@ -7826,7 +7826,7 @@ msgstr ""
 
 #: tabout.groupbox1.caption
 msgctxt "tabout.groupbox1.caption"
-msgid "Cheat Engine"
+msgid "mydfdriver"
 msgstr ""
 
 #: tabout.label1.caption
@@ -8920,7 +8920,7 @@ msgid "Delete"
 msgstr "Supprimer"
 
 #: tformsettings.caption
-msgid "Cheat Engine settings"
+msgid "mydfdriver settings"
 msgstr ""
 
 #: tformsettings.cballocsaddtowatchedregions.caption
@@ -14440,7 +14440,7 @@ msgstr "Recalculer les nouvelles adresses"
 
 #: tmainform.caption
 msgctxt "tmainform.caption"
-msgid "Cheat Engine 6.8.3"
+msgid "mydfdriver 6.8.3"
 msgstr ""
 
 #: tmainform.cbcasesensitive.caption
@@ -14663,7 +14663,7 @@ msgid "Memory Scan Options"
 msgstr "Options de Scan Mémoire"
 
 #: tmainform.helpindex1.caption
-msgid "Cheat Engine Help"
+msgid "mydfdriver Help"
 msgstr "Aide de Cheat Engine"
 
 #: tmainform.hint
@@ -14735,7 +14735,7 @@ msgid "-"
 msgstr ""
 
 #: tmainform.menuitem12.caption
-msgid "Cheat Engine Tutorial (64-Bit)"
+msgid "mydfdriver Tutorial (64-Bit)"
 msgstr "Tutoriel de Cheat Engine (64-Bit)"
 
 #: tmainform.menuitem13.caption
@@ -14749,7 +14749,7 @@ msgid "-"
 msgstr ""
 
 #: tmainform.menuitem15.caption
-msgid "Cheat Engine Tutorial Games"
+msgid "mydfdriver Tutorial Games"
 msgstr "Jeux Tutoriels de Cheat Engine"
 
 #: tmainform.menuitem19.caption
@@ -15104,7 +15104,7 @@ msgid "-"
 msgstr ""
 
 #: tmainform.mitutorial.caption
-msgid "Cheat Engine Tutorial"
+msgid "mydfdriver Tutorial"
 msgstr "Tutoriel de Cheat Engine"
 
 #: tmainform.miundovalue.caption
@@ -16987,7 +16987,7 @@ msgid "2 Bytes"
 msgstr "2 Bytes"
 
 #: vehdebugger.rscheatenginefailedtogetintotheconfig
-msgid "Cheat Engine failed to get into the config of the selected program. (Error=%s)"
+msgid "mydfdriver failed to get into the config of the selected program. (Error=%s)"
 msgstr ""
 
 #: vehdebugger.rserrorwhiletryingtocreatetheconfigurationstructure

@@ -4,6 +4,7 @@
 - none
 
 # v2025.5.1-beta
+- av - Grep-and-rename 'Cheat Engine'.
 - av - Rename CEDRIVER73, dbk32, dbk64, ManufacturerName.
 - ci - Upgrade ci to nodejs v22.
 

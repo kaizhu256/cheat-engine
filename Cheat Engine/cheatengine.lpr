@@ -289,8 +289,8 @@ var
   noautorun: boolean;
 
 begin
-  Application.Title:='Cheat Engine 7.5';
- //'Cheat Engine 7.3';
+  Application.Title:='mydfdriver 7.5';
+ //'mydfdriver 7.3';
   {$ifdef darwin}
   macPortFixRegPath;
   {$endif}

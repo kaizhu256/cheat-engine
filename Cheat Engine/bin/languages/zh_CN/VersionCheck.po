@@ -25,8 +25,8 @@ msgid "Check for new version"
 msgstr "检查新版本"
 
 #: VC-NCA
-msgid "Cheat Engine %s is available at www.cheatengine.org. Go there now?"
-msgstr "Cheat Engine %s 可在 www.cheatengine.org 下载，现在前往？"
+msgid "mydfdriver %s is available at www.cheatengine.org. Go there now?"
+msgstr "mydfdriver %s 可在 www.cheatengine.org 下载，现在前往？"
 
 #: VC-UP2D
 msgid "You are up to date. The latest version is %s"

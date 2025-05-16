@@ -81,7 +81,7 @@ object Form4: TForm4
     Height = 15
     Top = 72
     Width = 108
-    Caption = 'Cheat Engine Forum'
+    Caption = 'mydfdriver Forum'
     ParentColor = False
     OnClick = Label4Click
   end

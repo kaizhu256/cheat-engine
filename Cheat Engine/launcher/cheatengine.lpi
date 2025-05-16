@@ -9,12 +9,12 @@
         <MainUnitHasTitleStatement Value="False"/>
       </Flags>
       <MainUnit Value="0"/>
-      <Title Value="Cheat Engine launcher"/>
+      <Title Value="mydfdriver launcher"/>
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
       <XPManifest>
         <ExecutionLevel Value="requireAdministrator"/>
-        <TextName Value="Cheat Engine.Cheat Engine.Launcher"/>
+        <TextName Value="mydfdriver.Cheat Engine.Launcher"/>
         <TextDesc Value="Launches the best suitable cheatengine-*.exe"/>
       </XPManifest>
       <Icon Value="0"/>

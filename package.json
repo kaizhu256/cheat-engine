@@ -7,7 +7,7 @@
     "cpu": [
         "x64"
     ],
-    "description": "Cheat Engine is a development environment focused on modding games and applications for personal use.",
+    "description": "mydfdriver is a development environment focused on modding games and applications for personal use.",
     "engines": {
         "node": ">=14"
     },

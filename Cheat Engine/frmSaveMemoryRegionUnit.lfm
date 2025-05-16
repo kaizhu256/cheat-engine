@@ -187,7 +187,7 @@ object frmSaveMemoryRegion: TfrmSaveMemoryRegion
   end
   object SaveDialog1: TSaveDialog
     DefaultExt = '.CEM'
-    Filter = 'Cheat Engine Memory file(*.CEM)|*.CEM|All files(*.*)|*.*'
+    Filter = 'mydfdriver Memory file(*.CEM)|*.CEM|All files(*.*)|*.*'
     FilterIndex = 0
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
     left = 72
