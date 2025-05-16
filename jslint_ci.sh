@@ -57,7 +57,7 @@
 # `abcdefghijklmnopqrstuvwxyz{|}~\u007f
 
 shBashrcDebianInit() {
-# this function will init debian:stable /etc/skel/.bashrc
+# This function will init debian:stable /etc/skel/.bashrc.
 # https://sources.debian.org/src/bash/4.4-5/debian/skel.bashrc/
     # ~/.bashrc: executed by bash(1) for non-login shells.
     # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
@@ -175,7 +175,7 @@ shBashrcDebianInit() {
 }
 
 shBashrcWindowsInit() {
-# this function will init windows-environment
+# This function will init windows-environment.
     case "$(uname)" in
     CYGWIN*)
         ;;
@@ -188,47 +188,32 @@ shBashrcWindowsInit() {
         ;;
     esac
     # alias curl.exe
-    # if (! alias curl &>/dev/null) && [ -f c:/windows/system32/curl.exe ]
+    # if (! alias curl 2>/dev/null) && [ -f c:/windows/system32/curl.exe ]
     # then
     #     alias curl=c:/windows/system32/curl.exe
     # fi
     # alias node.exe
-    if (! alias node &>/dev/null)
+    if (! alias node 2>/dev/null)
     then
         alias node=node.exe
     fi
 }
 
 shBrowserScreenshot() {(set -e
-# this function will run headless-chrome to screenshot url $1 with
-# window-size $2
+# This function will run headless-chrome to screenshot url $1.
     node --input-type=module --eval '
 import moduleChildProcess from "child_process";
+import moduleFs from "fs";
 import moduleOs from "os";
 import modulePath from "path";
 import moduleUrl from "url";
-// init debugInline
-(function () {
-    let consoleError = console.error;
-    globalThis.debugInline = globalThis.debugInline || function (...argList) {
-
-// this function will both print <argList> to stderr and return <argList>[0]
-
-        consoleError("\n\ndebugInline");
-        consoleError(...argList);
-        consoleError("\n");
-        return argList[0];
-    };
-}());
 (async function () {
     let child;
     let exitCode;
     let file;
     let timeStart;
+    let tmpdir;
     let url;
-    if (process.platform !== "linux") {
-        return;
-    }
     timeStart = Date.now();
     url = process.argv[1];
     if (!(
@@ -244,28 +229,32 @@ import moduleUrl from "url";
     file = ".artifact/screenshot_browser_" + encodeURIComponent(file).replace((
         /%/g
     ), "_").toLowerCase() + ".png";
+    tmpdir = await moduleFs.promises.mkdtemp(
+        moduleOs.tmpdir() + "/shBrowserScreenshot-"
+    );
     child = moduleChildProcess.spawn(
         (
             process.platform === "darwin"
             ? "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
             : process.platform === "win32"
-            ? "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+            ? "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
             : "/usr/bin/google-chrome-stable"
         ),
         [
             "--headless",
+            "--hide-scrollbars",
             "--ignore-certificate-errors",
             "--incognito",
             "--screenshot",
             "--timeout=30000",
-            "--user-data-dir=" + moduleOs.tmpdir(),
-            "--window-size=800x600",
-            "-screenshot=" + file,
-            (
-                (process.getuid && process.getuid() === 0)
-                ? "--no-sandbox"
-                : ""
-            ),
+            "--user-data-dir=" + tmpdir,
+            "--window-size=800,800",
+            //
+            "--disable-audio-input",
+            "--disable-audio-output",
+            "--disable-gpu",
+            //
+            "-screenshot=" + modulePath.resolve(file),
             url
         ].concat(process.argv.filter(function (elem) {
             return elem.startsWith("-");
@@ -277,6 +266,7 @@ import moduleUrl from "url";
     exitCode = await new Promise(function (resolve) {
         child.on("exit", resolve);
     });
+    await moduleFs.promises.rm(tmpdir, {recursive: true});
     console.error(
         "shBrowserScreenshot"
         + "\n  - url - " + url
@@ -289,9 +279,9 @@ import moduleUrl from "url";
 )}
 
 shCiArtifactUpload() {(set -e
-# this function will upload build-artifacts to branch-gh-pages
+# This function will upload build-artifacts to branch-gh-pages.
 # shCiArtifactUploadCustom() {(set -e
-# # this function will run custom-code to upload build-artifacts
+# # This function will run custom-code to upload build-artifacts.
 #     return
 # )}
     if ! (shCiMatrixIsmainName \
@@ -300,7 +290,14 @@ shCiArtifactUpload() {(set -e
     then
         return
     fi
-    mkdir -p .artifact
+    # install graphicsmagick
+    if (! command -v gm >/dev/null)
+    then
+        sudo apt-get update
+        sudo apt-get install -y graphicsmagick
+    fi
+    # mkdir .artifact/
+    mkdir -p .artifact/
     # init .git/config
     git config --local user.email "github-actions@users.noreply.github.com"
     git config --local user.name "github-actions"
@@ -309,7 +306,7 @@ shCiArtifactUpload() {(set -e
     git pull --unshallow origin "$GITHUB_BRANCH0"
     # init $UPSTREAM_XXX
     export UPSTREAM_REPOSITORY="$(node -p '(
-    /^https:\/\/github\.com\/([^\/]*?\/[^.]*?)\.git$/
+    /^(?:git\+)?https:\/\/github\.com\/([^\/]*?\/[^.]*?)\.git$/
 ).exec(require("./package.json").repository.url)[1]
 ')" # '
     export UPSTREAM_GITHUB_IO="$(
@@ -321,53 +318,28 @@ shCiArtifactUpload() {(set -e
         printf "$GITHUB_REPOSITORY" | sed -e "s|/|.github.io/|"
     )"
     # screenshot changelog and files
-    node --input-type=module --eval '
-import moduleChildProcess from "child_process";
-(function () {
-    [
-        // parallel-task - screenshot changelog
-        [
-            "jslint_ci.sh",
-            "shRunWithScreenshotTxt",
-            ".artifact/screenshot_changelog.svg",
-            "head",
-            "-n50",
-            "CHANGELOG.md"
-        ],
-        // parallel-task - screenshot files
-        [
-            "jslint_ci.sh",
-            "shRunWithScreenshotTxt",
-            ".artifact/screenshot_package_listing.svg",
-            "shGitLsTree"
-        ],
-        // parallel-task - screenshot logo
-        [
-            "jslint_ci.sh",
-            "shImageLogoCreate"
-        ]
-    ].forEach(function (argList) {
-        moduleChildProcess.spawn(
-            "sh",
-            argList,
-            {stdio: ["ignore", 1, 2]}
-        ).on("exit", function (exitCode) {
-            if (exitCode) {
-                process.exit(exitCode);
-            }
-        });
-    });
-}());
-' "$@" # '
+    PID_LIST=""
+    # parallel-task - screenshot changelog
+    shRunWithScreenshotTxt .artifact/screenshot_changelog.svg \
+        head -n50 CHANGELOG.md &
+    PID_LIST="$PID_LIST $!"
+    # parallel-task - screenshot files
+    shRunWithScreenshotTxt .artifact/screenshot_package_listing.svg \
+        shGitLsTree &
+    PID_LIST="$PID_LIST $!"
+    # parallel-task - screenshot logo
+    shImageLogoCreate &
+    PID_LIST="$PID_LIST $!"
+    shPidListWait screenshot "$PID_LIST"
+    # shCiArtifactUploadCustom
     if (command -v shCiArtifactUploadCustom >/dev/null)
     then
         shCiArtifactUploadCustom
     fi
     # 1px-border around browser-screenshot
-    if (ls .artifact/screenshot_browser_*.png 2>/dev/null \
-            && mogrify -version 2>&1 | grep -i imagemagick)
+    if (ls .artifact/screenshot_browser_*.png >/dev/null 2>&1)
     then
-        mogrify -shave 1x1 -bordercolor black -border 1 \
+        gm mogrify -crop 798x598 -bordercolor black -border 1 \
             .artifact/screenshot_browser_*.png
     fi
     # add dir .artifact
@@ -419,15 +391,17 @@ import moduleChildProcess from "child_process";
 )}
 
 shCiBase() {(set -e
-# this function will run base-ci
+# This function will run base-ci.
 # shCiBaseCustom() {(set -e
-# # this function will run custom-code for base-ci
+# # This function will run custom-code for base-ci.
 #     return
 # )}
 # shCiLintCustom() {(set -e
-# # this function will run custom-code to lint files
+# # This function will run custom-code to lint files.
 # )}
     export GITHUB_BRANCH0="$(git rev-parse --abbrev-ref HEAD)"
+    # Auto-correct common errors in package.json.
+    npm pkg fix
     # validate package.json.fileCount
     node --input-type=module --eval '
 import moduleFs from "fs";
@@ -477,8 +451,8 @@ import moduleFs from "fs";
         {
             file: "README.md",
             src: fileDict["README.md"].replace((
-                /\bv\d\d\d\d\.\d\d?\.\d\d?\b/m
-            ), `v${versionMaster}`)
+                /(\[(?:main|master)<br>\()v\d\d\d\d\.\d\d?\.\d\d?\b/g
+            ), `$1v${versionMaster}`)
         }, {
             file: "package.json",
             src: fileDict["package.json"].replace((
@@ -582,21 +556,21 @@ import moduleFs from "fs";
 )}
 
 shCiMatrixIsmainName() {(set -e
-# this function will return 0 if current ci-job is main job
+# This function will return 0 if current ci-job is main job.
     CI_MATRIX_NAME="$(printf "$CI_MATRIX_NAME" | xargs)"
     [ "$CI_MATRIX_NAME" ] && [ "$CI_MATRIX_NAME" = "$CI_MATRIX_NAME_MAIN" ]
 )}
 
 shCiMatrixIsmainNodeversion() {(set -e
-# this function will return 0 if current ci-job is main job
+# This function will return 0 if current ci-job is main job.
     [ "$CI_MATRIX_NODE_VERSION" ] \
         && [ "$CI_MATRIX_NODE_VERSION" = "$CI_MATRIX_NODE_VERSION_MAIN" ]
 )}
 
 shCiPre() {(set -e
-# this function will run pre-ci
+# This function will run pre-ci.
 # shCiPreCustom() {(set -e
-# # this function will run custom-code for pre-ci
+# # This function will run custom-code for pre-ci.
 #     return
 # )}
     if [ -f ./myci2.sh ]
@@ -615,9 +589,9 @@ shCiPre() {(set -e
 )}
 
 shCiPublishNpm() {(set -e
-# this function will publish npm-package
+# This function will publish npm-package.
 # shCiPublishNpmCustom() {(set -e
-# # this function will run custom-code to npm-publish package
+# # This function will run custom-code to publish npm-package.
 #     # npm publish --access public
 # )}
     if ! ([ -f package.json ] \
@@ -641,9 +615,9 @@ shCiPublishNpm() {(set -e
 )}
 
 shCiPublishPypi() {(set -e
-# this function will publish pypi-package
+# This function will publish pypi-package.
 # shCiPublishPypiCustom() {(set -e
-# # this function will run custom-code to npm-publish package
+# # This function will run custom-code to publish pypi-package.
 #     # npm publish --access public
 # )}
     if ! ([ -f pyproject.toml ] \
@@ -657,23 +631,13 @@ shCiPublishPypi() {(set -e
     fi
 )}
 
-shCurlExe() {(set -e
-# this function will print to stdout "curl.exe", if it exists, else "curl"
-    if [ -f c:/windows/system32/curl.exe ]
-    then
-        printf c:/windows/system32/curl.exe
-        return
-    fi
-    printf curl
-)}
-
 shDirHttplinkValidate() {(set -e
-# this function will validate http-links embedded in .html and .md files
+# This function will validate http-links embedded in .html and .md files.
     # init $GITHUB_BRANCH0
     export GITHUB_BRANCH0="${GITHUB_BRANCH0:-alpha}"
     # init $UPSTREAM_XXX
     export UPSTREAM_REPOSITORY="$(node -p '(
-    /^https:\/\/github\.com\/([^\/]*?\/[^.]*?)\.git$/
+    /^(?:git\+)?https:\/\/github\.com\/([^\/]*?\/[^.]*?)\.git$/
 ).exec(require("./package.json").repository.url)[1]
 ')" # '
     export UPSTREAM_GITHUB_IO="$(
@@ -701,62 +665,79 @@ import moduleHttps from "https";
         await moduleFs.promises.readdir(".")
     ).forEach(async function (file) {
         let data;
-        if (file === "CHANGELOG.md" || !(
-            /.\.html$|.\.md$/m
-        ).test(file)) {
+        if (file === "CHANGELOG.md" || !(/.\.html$|.\.md$/m).test(file)) {
             return;
         }
         data = await moduleFs.promises.readFile(file, "utf8");
         // ignore link-rel-preconnect
         data = data.replace((
-            /<link\b.*?\brel="preconnect".*?>/g
+            /<link\b.+?\brel="preconnect".+?>/g
         ), "");
         data.replace((
-            /\bhttps?:\/\/.*?(?:[\s")\]]|\W?$)/gm
-        ), function (url) {
+            /\bhttps?:\/\/.+?([\s")\]]|\W?$)(<!--no-validate-->)?/gm
+        ), function (url, removeLast, noValidate) {
             let req;
-            url = url.slice(0, -1).replace((
-                /[\u0022\u0027]/g
-            ), "").replace((
-                /\/branch-[a-z]*?\//g
-            ), `/branch-${GITHUB_BRANCH0}/`).replace(new RegExp(
-                `\\b${UPSTREAM_REPOSITORY}\\b`,
-                "g"
-            ), GITHUB_REPOSITORY).replace(new RegExp(
-                `\\b${UPSTREAM_GITHUB_IO}\\b`,
-                "g"
-            ), GITHUB_GITHUB_IO);
+            let timeStart = Date.now();
+            if (removeLast && removeLast !== "/") {
+                url = url.slice(0, -1);
+            }
+            url = url.replace((/["\u0027]/g), "");
+            url = url.replace(
+                (/\/branch-[a-z]+?\//g),
+                `/branch-${GITHUB_BRANCH0}/`
+            );
+            url = url.replace(
+                (/_2fbranch-[a-z]+?_2f/g),
+                `_2fbranch-${GITHUB_BRANCH0}_2f`
+            );
+            url = url.replace(
+                new RegExp(`\\b${UPSTREAM_REPOSITORY}\\b`, "g"),
+                GITHUB_REPOSITORY
+            );
+            url = url.replace(
+                new RegExp(`\\b${UPSTREAM_GITHUB_IO}\\b`, "g"),
+                GITHUB_GITHUB_IO
+            );
             if ((
-                /^http:\/\/(?:127\.0\.0\.1|localhost|www\.w3\.org\/2000\/svg)(?:[\/:]|$)/m
-            ).test(url)) {
+                /^http:\/\/(?:127\.0\.0\.1|localhost|www\.w3\.org\/2000\/svg)(?:[\/:]|$)|^https:\/\/github\.com\/[\w.\-\/]+?\/compare\/[\w.\-\/]+?\.\.\.\w/m
+            ).test(url) || noValidate) {
                 return "";
             }
             moduleAssert.ok(
                 !url.startsWith("http://"),
-                `shDirHttplinkValidate - ${file} - insecure link - ${url}`
+                `shDirHttplinkValidate - insecure-link - ${file} - ${url}`
             );
             // ignore duplicate-link
             if (dict.hasOwnProperty(url)) {
                 return "";
             }
             dict[url] = true;
-            req = moduleHttps.request(url, function (res) {
+            req = moduleHttps.request(url, {
+                headers: {
+                    "user-agent": "undefined"
+                }
+            }, function (res) {
                 console.error(
-                    "shDirHttplinkValidate " + res.statusCode + " " + url
+                    `shDirHttplinkValidate - ${res.statusCode}`
+                    + ` - ${file} - ${url} - ${Date.now() - timeStart}ms`
                 );
-                moduleAssert.ok(
-                    res.statusCode < 400,
-                    `shDirHttplinkValidate - ${file} - unreachable url ${url}`
-                );
-                req.abort();
+                moduleAssert.ok(res.statusCode < 400);
+                req.destroy();
                 res.destroy();
             });
-            req.setTimeout(30000);
+            req.on("error", function (err) {
+                console.error(
+                    `shDirHttplinkValidate - error`
+                    + ` - ${file} - ${url} - ${Date.now() - timeStart}ms`
+                );
+                throw err;
+            });
+            req.setTimeout(60000);
             req.end();
             return "";
         });
         data.replace((
-            /(\bhref=|\bsrc=|\burl\(|\[[^]*?\]\()("?.*?)(?:[")\]]|$)/gm
+            /(\bhref=|\bsrc=|\burl\(|\[[^]+?\]\()("?.+?)(?:[")\]]|$)/gm
         ), function (ignore, linkType, url) {
             if (!linkType.startsWith("[")) {
                 url = url.slice(1);
@@ -776,15 +757,10 @@ import moduleHttps from "https";
             ).test(url)) {
                 moduleFs.stat(url.split("?")[0], function (ignore, exists) {
                     console.error(
-                        "shDirHttplinkValidate " + Boolean(exists) + " " + url
+                        `shDirHttplinkValidate - ${Boolean(exists)}`
+                        + ` - ${file} - ${url}`
                     );
-                    moduleAssert.ok(
-                        exists,
-                        (
-                            `shDirHttplinkValidate - ${file}`
-                            + `- unreachable file ${url}`
-                        )
-                    );
+                    moduleAssert.ok(exists);
                 });
             }
             return "";
@@ -795,12 +771,12 @@ import moduleHttps from "https";
 )}
 
 shDuList() {(set -e
-# this function will du $1 and sort its subdir by size
+# This function will du $1 and sort its subdir by size.
     du -md1 "$1" | sort -nr
 )}
 
 shGitCmdWithGithubToken() {(set -e
-# this function will run git $CMD with $MY_GITHUB_TOKEN
+# This function will run git $CMD with $MY_GITHUB_TOKEN.
     printf "shGitCmdWithGithubToken $*\n"
     if [ -f .git/config ]
     then
@@ -844,9 +820,9 @@ shGitCmdWithGithubToken() {(set -e
 )}
 
 shGitCommitPushOrSquash() {(set -e
-# this function will, if $COMMIT_COUNT > $COMMIT_LIMIT,
+# This function will, if $COMMIT_COUNT > $COMMIT_LIMIT,
 # then backup, squash, force-push,
-# else normal-push
+# else normal-push.
     BRANCH="$(git branch --show-current)"
     COMMIT_MESSAGE="${1:-$(git diff HEAD --stat)}"
     COMMIT_LIMIT="$2"
@@ -873,7 +849,7 @@ COMMIT_LIMIT=$COMMIT_LIMIT MODE_SQUASH=$MODE_SQUASH\n"
     fi
     # squash commits
     COMMIT_MESSAGE="[squashed $COMMIT_COUNT commits] $COMMIT_MESSAGE"
-    git branch -D __tmp1 &>/dev/null || true
+    git branch -D __tmp1 2>/dev/null || true
     git checkout --orphan __tmp1
     git commit --quiet -am "$COMMIT_MESSAGE" || true
     # reset branch to squashed-commit
@@ -884,7 +860,7 @@ COMMIT_LIMIT=$COMMIT_LIMIT MODE_SQUASH=$MODE_SQUASH\n"
 )}
 
 shGitGc() {(set -e
-# this function will gc unreachable .git objects
+# This function will gc unreachable .git objects.
 # http://stackoverflow.com/questions/3797907/how-to-remove-unused-objects-from-a-git-repository
     git remote prune origin
     git \
@@ -897,7 +873,7 @@ shGitGc() {(set -e
 )}
 
 shGitInitBase() {(set -e
-# this function will git init && create basic git-template from jslint-org/base
+# This function will git init && create basic git-template from jslint-org/base.
     git init
     git config core.autocrlf input
     git remote remove base 2>/dev/null || true
@@ -915,8 +891,8 @@ shGitInitBase() {(set -e
 )}
 
 shGitLsTree() {(set -e
-# this function will "git ls-tree" all files committed in HEAD
-# example use:
+# This function will "git ls-tree" all files committed in HEAD.
+# example usage:
 # shGitLsTree | sort -rk3 # sort by date
 # shGitLsTree | sort -rk4 # sort by size
     node --input-type=module --eval '
@@ -991,8 +967,123 @@ import moduleChildProcess from "child_process";
 ' "$@" # '
 )}
 
+shGitPullrequestCleanup() {(set -e
+# This function will cleanup pull-request after merge.
+    git fetch upstream beta
+    # verify no diff between alpha..upstream/beta
+    git diff alpha..upstream/beta
+    git push . HEAD:__pr_upstream_pre -f
+    git reset upstream/beta
+    git push origin alpha -f
+    git push origin alpha:beta
+    sh jslint_ci.sh shMyciUpdate
+    git push . HEAD:__pr_upstream -f
+)}
+
+shGitPullrequest() {(set -e
+# This function will create-and-push a github-pull-commit to origin/alpha.
+    node --input-type=module --eval '
+// init debugInline
+(function () {
+    let consoleError = console.error;
+    globalThis.debugInline = globalThis.debugInline || function (...argList) {
+
+// This function will print <argv> to stderr and then return <argv>[0].
+
+        consoleError("\n\ndebugInline");
+        consoleError(...argList);
+        consoleError("\n");
+        return argList[0];
+    };
+}());
+import moduleAssert from "assert";
+import moduleChildProcess from "child_process";
+import moduleFs from "fs";
+(async function () {
+    let branchCheckpoint = process.argv[2] || "HEAD";
+    let branchMerge = process.argv[1] || "beta";
+    let branchPull;
+    let commitMessage;
+    let data;
+    let version = process.argv[3] || new Date().toISOString().slice(0, 10);
+    version = version.replace((/-0?/g), ".");
+    // security - sanitize branchXxx
+    [
+        branchCheckpoint, branchMerge, version
+    ] = [
+        branchCheckpoint, branchMerge, version
+    ].map(function (branch) {
+        return branch.trim().replace((/[^\w.\-]/g), "_");
+    });
+    data = await moduleFs.promises.readFile("CHANGELOG.md", "utf8");
+    switch (branchMerge) {
+    case "master":
+        version = `v${version}`;
+        // update CHANGELOG.md
+        data = data.replace(
+            /\n\n# v\d\d\d\d\.\d\d?\.\d\d?(?:-.*?)?\n/,
+            `\n\n# ${version}\n`
+        );
+        await moduleFs.promises.writeFile("CHANGELOG.md", data);
+        commitMessage = new RegExp(
+            `\n\n# ${version}\n[\\S\\s]+?\n\n`
+        ).exec(data)[0];
+        break;
+    default:
+        version = `p${version}`;
+        commitMessage = (
+            /\n\n# v\d\d\d\d\.\d\d?\.\d\d?(?:-.*?)?\n(- [\S\s]+?)(?:\n- |\n\n)/
+        ).exec(data)[1];
+    }
+    branchPull = `branch-${version}`;
+    // update README.md
+    data = await moduleFs.promises.readFile("README.md", "utf8");
+    data = data.replace(
+        new RegExp(
+            (
+                "(\\bhttps:\\/\\/github\\.com\\/[\\w.\\-\\/]+?"
+                + "\\/compare"
+                + "\\/[\\w.\\-\\/]+?\\.\\.\\.[\\w.:\\-\\/]+?)"
+                + `:branch-${version[0]}\\d\\d\\d\\d\\.\\d\\d?\\.\\d\\d?\\b`
+            ),
+            "g"
+        ),
+        `$1:${branchPull}`
+    );
+    await moduleFs.promises.writeFile("README.md", data);
+    // security - sanitize commitMessage
+    commitMessage = commitMessage.trim().replace((/[$\u0027`]/g), "?");
+    moduleChildProcess.spawn(
+        "sh",
+        [
+            "-c",
+            (`
+(set -e
+    . ./jslint_ci.sh
+    npm run test2
+    git push . HEAD:__pr_${branchMerge}_pre -f
+    shGitSquashPop ${branchCheckpoint} \u0027${commitMessage}\u0027
+    git diff origin/${branchPull} || true
+    git push origin alpha:${branchPull} -f
+    git push origin alpha -f
+    shDirHttplinkValidate
+    git push . HEAD:__pr_${branchMerge} -f
+)
+            `)
+        ],
+        {stdio: ["ignore", 1, 2]}
+    ).on("exit", function (exitCode) {
+        moduleAssert.ok(
+            exitCode === 0,
+            `shGitPullrequest - exitCode=${exitCode}`
+        );
+    });
+}());
+' "$@" # '
+)}
+
 shGitSquashPop() {(set -e
-# this function will squash HEAD to given $COMMIT
+# This function will squash HEAD to given $COMMIT.
 # http://stackoverflow.com/questions/5189560
 # /how-can-i-squash-my-last-x-commits-together-using-git
     COMMIT="$1"
@@ -1005,7 +1096,7 @@ shGitSquashPop() {(set -e
 )}
 
 shGithubCheckoutRemote() {(set -e
-# this function will run like actions/checkout, except checkout remote-branch
+# This function will run like actions/checkout, except checkout remote-branch.
     # GITHUB_REF_NAME="owner/repo/branch"
     GITHUB_REF_NAME="$1"
     if (printf "$GITHUB_REF_NAME" | grep -q ".*/.*/.*")
@@ -1013,7 +1104,7 @@ shGithubCheckoutRemote() {(set -e
         # branch - */*/*
         git fetch origin alpha
         # assert latest ci
-        if (git rev-parse "$GITHUB_REF_NAME" &>/dev/null) \
+        if (git rev-parse "$GITHUB_REF_NAME" 2>/dev/null) \
             && [ "$(git rev-parse "$GITHUB_REF_NAME")" \
             != "$(git rev-parse origin/alpha)" ]
         then
@@ -1048,17 +1139,17 @@ shGithubCheckoutRemote() {(set -e
 )}
 
 shGithubFileDownload() {(set -e
-# this function will download file $1 from github repo/branch
+# This function will download file $1 from github repo/branch.
 # https://docs.github.com/en/rest/reference/repos#create-or-update-file-contents
-# example use:
+# example usage:
 # shGithubFileDownload octocat/hello-world/master/hello.txt
     shGithubFileDownloadUpload download "$1" "$2"
 )}
 
 shGithubFileDownloadUpload() {(set -e
-# this function will upload file $2 to github repo/branch $1
+# This function will upload file $2 to github repo/branch $1.
 # https://docs.github.com/en/rest/reference/repos#create-or-update-file-contents
-# example use:
+# example usage:
 # shGithubFileUpload octocat/hello-world/master/hello.txt hello.txt
     shGithubTokenExport
     node --input-type=module --eval '
@@ -1149,15 +1240,15 @@ import modulePath from "path";
 )}
 
 shGithubFileUpload() {(set -e
-# this function will upload file $2 to github repo/branch $1
+# This function will upload file $2 to github repo/branch $1.
 # https://docs.github.com/en/rest/reference/repos#create-or-update-file-contents
-# example use:
+# example usage:
 # shGithubFileUpload octocat/hello-world/master/hello.txt hello.txt
     shGithubFileDownloadUpload upload "$1" "$2"
 )}
 
 shGithubTokenExport() {
-# this function will export $MY_GITHUB_TOKEN from file
+# This function will export $MY_GITHUB_TOKEN from file.
     if [ ! "$MY_GITHUB_TOKEN" ]
     then
         export MY_GITHUB_TOKEN="$(cat ~/.mysecret2/.my_github_token)"
@@ -1165,8 +1256,8 @@ shGithubTokenExport() {
 }
 
 shGithubWorkflowDispatch() {(set -e
-# this function will trigger github-workflow on given $REPO and $BRANCH
-# example use:
+# This function will trigger github-workflow on given $REPO and $BRANCH.
+# example usage:
 # shGithubWorkflowDispatch octocat/hello-world master
     shGithubTokenExport
     REPO="$1"
@@ -1174,7 +1265,7 @@ shGithubWorkflowDispatch() {(set -e
     BRANCH="$1"
     shift
     EXIT_CODE=0
-    "$(shCurlExe)" \
+    curl \
 "https://api.github.com/repos/$REPO/actions/workflows/ci.yml/dispatches" \
         -H "accept: application/vnd.github.v3+json" \
         -H "authorization: Bearer $MY_GITHUB_TOKEN" \
@@ -1187,7 +1278,7 @@ shGithubWorkflowDispatch() {(set -e
 )}
 
 shGrep() {(set -e
-# this function will recursively grep . for $REGEXP
+# This function will recursively grep . for $REGEXP.
     REGEXP="$1"
     shift
     FILE_FILTER="\
@@ -1217,7 +1308,7 @@ vendor)s{0,1}(\\b|_)\
 )}
 
 shGrepReplace() {(set -e
-# this function will inline grep-and-replace /tmp/shGrep.txt
+# This function will inline grep-and-replace /tmp/shGrep.txt.
     node --input-type=module --eval '
 import moduleFs from "fs";
 import moduleOs from "os";
@@ -1249,7 +1340,7 @@ import modulePath from "path";
 )}
 
 shHttpFileServer() {(set -e
-# this function will run simple node http-file-server on port $PORT
+# This function will run simple node http-file-server on port $PORT.
     if [ ! "$npm_config_mode_auto_restart" ]
     then
         EXIT_CODE=0
@@ -1279,19 +1370,6 @@ import moduleHttp from "http";
 import modulePath from "path";
 import moduleRepl from "repl";
 import moduleUrl from "url";
-// init debugInline
-(function () {
-    let consoleError = console.error;
-    globalThis.debugInline = globalThis.debugInline || function (...argList) {
-
-// this function will both print <argList> to stderr and return <argList>[0]
-
-        consoleError("\n\ndebugInline");
-        consoleError(...argList);
-        consoleError("\n");
-        return argList[0];
-    };
-}());
 (async function httpFileServer() {
 
 // this function will start http-file-server
@@ -1360,8 +1438,8 @@ import moduleUrl from "url";
         }
         // replace trailing "/" with "/index.html"
         file = pathname.slice(1).replace((
-            /\/$/
-        ), "/index.html");
+            /\/$|^$/m
+        ), "./index.html");
         // resolve file
         file = modulePath.resolve(file);
         // security - disable parent-directory lookup
@@ -1528,29 +1606,22 @@ import moduleUrl from "url";
 )}
 
 shImageLogoCreate() {(set -e
-# this function will create .png logo
-    if [ ! -f asset_image_logo_512.html ]
+# This function will create .png logo.
+    if [ ! -f asset_image_logo_256.html ]
     then
         return
     fi
-    # screenshot asset_image_logo_512.png
-    mkdir -p .artifact
-    shBrowserScreenshot asset_image_logo_512.html \
-        --window-size=512x512 \
-        -screenshot=.artifact/asset_image_logo_512.png
-    # create various smaller thumbnails
-    for SIZE in 32 64 128 256
-    do
-        convert -resize "${SIZE}x${SIZE}" .artifact/asset_image_logo_512.png \
-            ".artifact/asset_image_logo_$SIZE.png"
-        printf \
-"shImageLogoCreate - wrote - .artifact/asset_image_logo_$SIZE.png\n" 1>&2
-    done
+    FILE=".artifact/asset_image_logo_256.png"
+    shBrowserScreenshot asset_image_logo_256.html \
+        "-screenshot=$(node --print "path.resolve(process.argv[1])" "$FILE")"
+    gm mogrify -crop 256x256 "$FILE"
+    printf \
+"shImageLogoCreate - wrote - $FILE\n" 1>&2
     # convert to svg @ https://convertio.co/png-svg/
 )}
 
 shImageToDataUri() {(set -e
-# this function will convert image $1 to data-uri string
+# This function will convert image $1 to data-uri string.
     node --input-type=module --eval '
 import moduleFs from "fs";
 import moduleHttps from "https";
@@ -1588,7 +1659,7 @@ import moduleHttps from "https";
 )}
 
 shJsonNormalize() {(set -e
-# this function will
+# This function will:
 # 1. read json-data from file $1
 # 2. normalize json-data
 # 3. write normalized json-data back to file $1
@@ -1649,7 +1720,7 @@ function objectDeepCopyWithKeysSorted(obj) {
 )}
 
 shLintPython() {(set -e
-# this function will lint python file
+# This function will lint python file.
     FILE_LIST="$@"
     (
     printf "\n\nlint ruff\n"
@@ -1715,7 +1786,7 @@ shLintPython() {(set -e
 )}
 
 shNpmPublishV0() {(set -e
-# this function will npm-publish name $1 with bare package.json
+# This function will npm-publish name $1 with bare package.json.
     DIR=/tmp/shNpmPublishV0
     rm -rf "$DIR" && mkdir -p "$DIR" && cd "$DIR"
     printf "{\"name\":\"$1\",\"version\":\"0.0.1\"}\n" > package.json
@@ -1724,7 +1795,7 @@ shNpmPublishV0() {(set -e
 )}
 
 shPidListWait() {
-# this will wait for all process-pid in $PID_LIST to exit
+# This function will wait for all process-pid in $PID_LIST to exit.
     EXIT_CODE=0
     PID_LIST="$2"
     TASK="$1"
@@ -1739,7 +1810,7 @@ shPidListWait() {
 }
 
 shRmDsStore() {(set -e
-# this function will recursively rm .DS_Store from current-dir
+# This function will recursively rm .DS_Store from current-dir.
 # http://stackoverflow.com/questions/2016844/bash-recursively-remove-files
     for NAME in "._*" ".DS_Store" "desktop.ini" "npm-debug.log" "*~"
     do
@@ -1748,25 +1819,12 @@ shRmDsStore() {(set -e
 )}
 
 shRollupFetch() {(set -e
-# this function will fetch raw-lib from $1
+# This function will fetch raw-lib from $1.
     node --input-type=module --eval '
 import moduleChildProcess from "child_process";
 import moduleFs from "fs";
 import moduleHttps from "https";
 import modulePath from "path";
-// init debugInline
-(function () {
-    let consoleError = console.error;
-    globalThis.debugInline = globalThis.debugInline || function (...argList) {
-
-// this function will both print <argList> to stderr and return <argList>[0]
-
-        consoleError("\n\ndebugInline");
-        consoleError(...argList);
-        consoleError("\n");
-        return argList[0];
-    };
-}());
 function objectDeepCopyWithKeysSorted(obj) {
 
 // This function will recursively deep-copy <obj> with keys sorted.
@@ -1800,6 +1858,8 @@ function replaceListReplace(replaceList, data) {
                 : ""
             );
         });
+        elem.flags = elem.flags || "";
+        elem.substr = elem.substr || "";
     });
     // replaceList - sort
     replaceList.sort(function (aa, bb) {
@@ -1844,6 +1904,7 @@ function replaceListReplace(replaceList, data) {
     let fetchCount = 0;
     let fetchList;
     let matchObj;
+    let promiseList = [];
     let repoDict;
     function pipeToBuffer(res, dict, key) {
 
@@ -1877,12 +1938,15 @@ function replaceListReplace(replaceList, data) {
         // fetch dateCommitted
         if (!repoDict.hasOwnProperty(elem.prefix)) {
             repoDict[elem.prefix] = true;
-            moduleHttps.request(elem.prefix.replace(
-                "/blob/",
-                "/commits/"
-            ), function (res) {
-                pipeToBuffer(res, elem, "dateCommitted");
-            }).end();
+            promiseList.push(new Promise(function (resolve) {
+                moduleHttps.request(elem.prefix.replace(
+                    "/blob/",
+                    "/commits/"
+                ), function (res) {
+                    pipeToBuffer(res, elem, "dateCommitted");
+                    res.on("end", resolve);
+                }).end();
+            }));
         }
         // fetch file
         if (elem.node) {
@@ -1921,27 +1985,29 @@ function replaceListReplace(replaceList, data) {
             pipeToBuffer(res, elem, "data");
         });
     });
+    await Promise.all(promiseList);
     // parse fetched data
     process.on("exit", function () {
-        let header;
-        let result;
-        let result0;
-        result = "";
-        fetchList.forEach(function ({
-            comment,
-            data,
-            dataUriType,
-            dateCommitted,
-            footer = "",
-            header = "",
-            prefix,
-            replaceList = [],
-            url
-        }, ii, list) {
+        let rollupBody;
+        let rollupBody0;
+        let rollupHeader;
+        rollupBody = "";
+        fetchList.forEach(function (elem) {
+            let {
+                comment,
+                data,
+                dataUriType,
+                dateCommitted,
+                footer = "",
+                header = "",
+                prefix,
+                replaceList = [],
+                url
+            } = elem;
             if (!url) {
                 return;
             }
-            list[ii].exports = (
+            elem.exports = (
                 (
                     "exports_" + modulePath.dirname(url).replace(
                         "https://github.com/",
@@ -1965,16 +2031,20 @@ function replaceListReplace(replaceList, data) {
                     ), "_")
                 )
             );
+            elem.replaceList = replaceList;
             if (dataUriType) {
                 return;
             }
-            if (dateCommitted) {
-                result += (
+            if (dateCommitted && dateCommitted.toString()) {
+                rollupBody += (
                     "\n\n\n/*\n"
                     + "repo " + prefix.replace("/blob/", "/tree/") + "\n"
-                    + "committed " + (
-                        /\b\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\dZ\b|$/
-                    ).exec(dateCommitted.toString())[0] + "\n"
+                    + "committed " + new Date(
+                        (
+                            /"(\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\d[^"]*?)"/
+                        ).exec(dateCommitted.toString())?.[1]
+                        || "1970-01-01T00:00:00Z"
+                    ).toISOString().replace((/\.\d*?Z/), "Z") + "\n"
                     + "*/"
                 );
             }
@@ -1989,42 +2059,42 @@ function replaceListReplace(replaceList, data) {
             }
             data = replaceListReplace(replaceList, data);
             // init header and footer
-            result += (
+            rollupBody += (
                 "\n\n\n/*\nfile " + url + "\n*/\n"
                 + header
                 + data.trim()
                 + footer
             );
         });
-        result = (
-            "\n" + result.trim()
+        rollupBody = (
+            "\n" + rollupBody.trim()
             + "\n\n\n/*\nfile none\n*/\n/*jslint-enable*/\n"
         );
         // comment #!
-        result = result.replace((
+        rollupBody = rollupBody.replace((
             /^#!/gm
         ), "// $&");
         // normalize newline
-        result = result.replace((
+        rollupBody = rollupBody.replace((
             /\r\n|\r/g
         ), "\n");
         // remove trailing-whitespace
-        result = result.replace((
+        rollupBody = rollupBody.replace((
             /[\t ]+$/gm
         ), "");
         // remove leading-newline before ket
-        result = result.replace((
+        rollupBody = rollupBody.replace((
             /\n+?(\n *?\})/g
         ), "$1");
         // eslint - no-multiple-empty-lines
         // https://github.com/eslint/eslint/blob/v7.2.0/docs/rules/no-multiple-empty-lines.md //jslint-ignore-line
-        result = result.replace((
+        rollupBody = rollupBody.replace((
             /\n{4,}/g
         ), "\n\n\n");
         // replace from replaceList
-        result = replaceListReplace(matchObj[1].replaceList, result);
-        // init header
-        header = (
+        rollupBody = replaceListReplace(matchObj[1].replaceList, rollupBody);
+        // init rollupHeader
+        rollupHeader = (
             matchObj.input.slice(0, matchObj.index)
             + "/*jslint-disable*/\n/*\nshRollupFetch\n"
             + JSON.stringify(
@@ -2042,8 +2112,8 @@ function replaceListReplace(replaceList, data) {
                 ), "/\\\\*") + "\n";
             }).sort().join("\n") + "*/\n\n"
         );
-        // replace from header-diff
-        header.replace((
+        // replace from rollupHeader-diff
+        rollupHeader.replace((
             /((?:^-.*?\n)+?)((?:^\+.*?\n)+)/gm
         ), function (ignore, aa, bb) {
             aa = "\n" + aa.replace((
@@ -2060,12 +2130,12 @@ function replaceListReplace(replaceList, data) {
             ), "*/").replace((
                 /\/\\\\\*/g
             ), "/*");
-            result0 = result;
+            rollupBody0 = rollupBody;
             // disable $-escape in replacement-string
-            result = result.replace(aa, function () {
+            rollupBody = rollupBody.replace(aa, function () {
                 return bb;
             });
-            if (result0 === result) {
+            if (rollupBody0 === rollupBody) {
                 throw new Error(
                     "shRollupFetch - cannot find-and-replace snippet "
                     + JSON.stringify(aa)
@@ -2086,15 +2156,15 @@ function replaceListReplace(replaceList, data) {
                 "data:" + dataUriType + ";base64,"
                 + data.toString("base64")
             );
-            result0 = result;
-            result = result.replace(
+            rollupBody0 = rollupBody;
+            rollupBody = rollupBody.replace(
                 new RegExp("^" + exports + "$", "gm"),
                 // disable $-escape in replacement-string
                 function () {
                     return data;
                 }
             );
-            if (result0 === result) {
+            if (rollupBody0 === rollupBody) {
                 throw new Error(
                     "shRollupFetch - cannot find-and-replace snippet "
                     + JSON.stringify(exports)
@@ -2102,14 +2172,17 @@ function replaceListReplace(replaceList, data) {
             }
         });
         // init footer
-        result = header + result;
+        rollupBody = rollupHeader + rollupBody;
         matchObj.input.replace((
             /\n\/\*\nfile none\n\*\/\n\/\*jslint-enable\*\/\n([\S\s]+)/
         ), function (ignore, match1) {
-            result += "\n\n" + match1.trim() + "\n";
+            rollupBody += "\n\n" + match1.trim() + "\n";
         });
         // write to file
-        moduleFs.writeFileSync(process.argv[1], result); //jslint-ignore-line
+        moduleFs.writeFileSync( //jslint-ignore-line
+            process.argv[1],
+            rollupBody
+        );
     });
 }());
 ' "$@" # '
@@ -2117,8 +2190,8 @@ function replaceListReplace(replaceList, data) {
 )}
 
 shRunWithCoverage() {(set -e
-# this function will run nodejs command $@ with v8-coverage
-# and create coverage-report .artifact/coverage/index.html
+# This function will run nodejs command $@ with v8-coverage
+# and create coverage-report .artifact/coverage/index.html.
     node --input-type=module --eval '
 /*jslint indent2*/
 let moduleChildProcess;
@@ -3227,20 +3300,27 @@ function sentinel() {}
       }
     }));
     exitCode = await new Promise(function (resolve) {
+      let processArgv0 = processArgv[0];
+      if (processArgv0 === "npm") {
+        processArgv0 = process.platform.replace(
+          "win32",
+          "npm.cmd"
+        ).replace(
+          process.platform,
+          "npm"
+        );
+      }
       moduleChildProcess.spawn(
-        (
-          processArgv[0] === "npm"
-          ? process.platform.replace("win32", "npm.cmd").replace(
-            process.platform,
-            "npm"
-          )
-          : processArgv[0]
-        ),
+        processArgv0,
         processArgv.slice(1),
         {
           env: Object.assign({}, process.env, {
             NODE_V8_COVERAGE: coverageDir
           }),
+          shell: (
+            processArgv0.endsWith(".bat")
+            || processArgv0.endsWith(".cmd")
+          ),
           stdio: ["ignore", 1, 2]
         }
       ).on("exit", resolve);
@@ -3415,7 +3495,7 @@ v8CoverageReportCreate({
 )}
 
 shRunWithScreenshotTxt() {(set -e
-# this function will run cmd $@ and screenshot text-output
+# This function will run cmd $@ and screenshot text-output.
 # https://www.cnx-software.com/2011/09/22/how-to-convert-a-command-line-result-into-an-image-in-linux/
     EXIT_CODE=0
     SCREENSHOT_SVG="$1"

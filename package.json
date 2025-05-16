@@ -26,7 +26,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/kaizhu256/cheat-engine.git"
+        "url": "git+https://github.com/kaizhu256/cheat-engine.git"
     },
     "scripts": {
         "test": "sh jslint_ci.sh shCiBase",
@@ -34,5 +34,5 @@
     },
     "shCiArtifactUpload": 1,
     "shCiPublishNpm": 0,
-    "version": "2023.11.1-beta"
+    "version": "2025.5.1-beta"
 }

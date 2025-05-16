@@ -38,9 +38,9 @@ jobs:
         v${{ matrix.node_version }}
         ${{ matrix.architecture }}
         ${{ matrix.os }}
-      CI_MATRIX_NAME_MAIN: "node v20 x64 ubuntu-latest"
+      CI_MATRIX_NAME_MAIN: "node v22 x64 ubuntu-latest"
       CI_MATRIX_NODE_VERSION: v${{ matrix.node_version }}
-      CI_MATRIX_NODE_VERSION_MAIN: v20
+      CI_MATRIX_NODE_VERSION_MAIN: v22
       CI_WORKFLOW_NAME: >
         ${{ github.workflow }}
         - ${{ github.event_name }}
@@ -55,7 +55,7 @@ jobs:
     steps:
       # disable autocrlf in windows
       - run: |
-          sh -c uname
+          sh -c "uname -a"
           echo "$(date -u +"%Y-%m-%d %TZ") - ${{ env.CI_WORKFLOW_NAME }}" # "
           git config --global core.autocrlf false
       # https://github.com/actions/checkout
@@ -70,14 +70,13 @@ jobs:
       # https://github.com/actions/setup-node
       - uses: actions/setup-node@v4
         with:
-          architecture: ${{ matrix.architecture }}
           node-version: ${{ matrix.node_version }}
       # https://github.com/actions/setup-python
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python_version }}
       # https://github.com/actions/cache
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           key: >
             ${{ hashFiles('./package.json') }}
