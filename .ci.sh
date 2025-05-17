@@ -182,6 +182,24 @@ import moduleFs from "fs";
             ;;
         esac
     done
+    # av - Replace "Cheat Engine" in .exe.
+    node --input-type=module --eval '
+import moduleFs from "fs";
+(async function () {
+    let data;
+    let file = "bin/cheatengine-x86_64.exe";
+    let ii;
+    data = await moduleFs.promises.readFile(file);
+    while (true) {
+        ii = data.indexOf("Cheat Engine", ii);
+        if (ii === -1) {
+            break;
+        }
+        data.write("mydfffdriver", ii);
+    }
+    await moduleFs.promises.writeFile(file, data);
+}());
+' "$@" # '
     printf "0\n"
     )
     #
