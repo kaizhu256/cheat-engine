@@ -406,7 +406,7 @@ begin
       end;
 
       try
-        s:='MYDFDRIVER73';
+        s:='mydfffdriver73';
         getmem(apppath,250);
         GetModuleFileName(0,apppath,250);
 

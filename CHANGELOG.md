@@ -4,6 +4,7 @@
 - none
 
 # v2025.5.1-beta
+- av - Rename mydfx3drv.
 - av - Rename CEDRIVER73, dbk32, dbk64, ManufacturerName.
 - ci - Upgrade ci to nodejs v22.
 
