@@ -196,6 +196,8 @@ import moduleFs from "fs";
         ["Cheatengine", "mydffdriver"],
         ["DBK32", "mydff"],
         ["DBK64", "mydff"],
+        ["Dbk32", "mydff"],
+        ["Dbk64", "mydff"],
         ["cheat Engine", "mydfffdriver"],
         ["cheat engine", "mydfffdriver"],
         ["cheatengine", "mydffdriver"],
