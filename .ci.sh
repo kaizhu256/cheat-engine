@@ -191,22 +191,24 @@ import moduleFs from "fs";
     let file2 = "bin/ce-x86_64.exe";
     data = await moduleFs.promises.readFile(file);
     [
-        ["CHEATENGINE", "mydfedriver"],
-        ["Cheat Engine", "mydff_driver"],
-        ["Cheat engine", "mydff_driver"],
-        ["CheatEngine", "mydfedriver"],
-        ["Cheatengine", "mydfedriver"],
-        ["DBK32", "myk32"],
-        ["DBK64", "myk64"],
-        ["Dbk32", "myk32"],
-        ["Dbk64", "myk64"],
-        ["cheat Engine", "mydff_driver"],
-        ["cheat engine", "mydff_driver"],
-        ["cheatEngine", "mydfedriver"],
-        ["cheatengine", "mydfedriver"],
-        ["dbk32", "myk32"],
-        ["dbk64", "myk64"]
-    ].forEach(function ([aa, bb]) {
+        ["mydfedriver", "CHEATENGINE"],
+        ["mydfedriver", "CheatEngine"],
+        ["mydfedriver", "Cheatengine"],
+        ["mydfedriver", "cheatEngine"],
+        ["mydfedriver", "cheatengine"],
+        ["mydff_driver", "Cheat Engine"],
+        ["mydff_driver", "Cheat engine"],
+        ["mydff_driver", "cheat Engine"],
+        ["mydff_driver", "cheat engine"],
+        ["myk ", "dbk "],
+        ["myk32", "DBK32"],
+        ["myk32", "Dbk32"],
+        ["myk32", "dbk32"],
+        ["myk64", "DBK64"],
+        ["myk64", "Dbk64"],
+        ["myk64", "dbk64"],
+        ["myk_", "dbk_"]
+    ].forEach(function ([bb, aa]) {
         let ii = 0;
         while (true) {
             ii = data.indexOf(aa, ii);
