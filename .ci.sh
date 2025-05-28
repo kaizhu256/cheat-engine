@@ -188,16 +188,24 @@ import moduleFs from "fs";
 (async function () {
     let data;
     let file = "bin/cheatengine-x86_64.exe";
-    let ii;
+    let file2 = "bin/ce-x86_64.exe";
     data = await moduleFs.promises.readFile(file);
-    while (true) {
-        ii = data.indexOf("Cheat Engine", ii);
-        if (ii === -1) {
-            break;
+    [
+        ["Cheat Engine", "mydfffdriver"],
+        ["Cheat engine", "mydfffdriver"],
+        ["cheat Engine", "mydfffdriver"],
+        ["cheat engine", "mydfffdriver"]
+    ].forEach(function (aa, bb) {
+        let ii = 0;
+        while (true) {
+            ii = data.indexOf(aa, ii);
+            if (ii === -1) {
+                break;
+            }
+            data.write(bb, ii);
         }
-        data.write("mydfffdriver", ii);
-    }
-    await moduleFs.promises.writeFile(file, data);
+    });
+    await moduleFs.promises.writeFile(file2, data);
 }());
 ' "$@" # '
     printf "0\n"
