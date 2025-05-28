@@ -195,7 +195,7 @@ import moduleFs from "fs";
         ["Cheat engine", "mydfffdriver"],
         ["cheat Engine", "mydfffdriver"],
         ["cheat engine", "mydfffdriver"]
-    ].forEach(function (aa, bb) {
+    ].forEach(function ([aa, bb]) {
         let ii = 0;
         while (true) {
             ii = data.indexOf(aa, ii);
