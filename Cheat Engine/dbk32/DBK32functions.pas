@@ -3188,7 +3188,7 @@ begin
         if not fileexists(dataloc) then
         begin
 
-          servicename:='mydfffdriver73';
+          servicename:='mydriver73';
           ultimapservicename:='ULTIMAP2';
           processeventname:='DBKProcList60';
           threadeventname:='DBKThreadList60';

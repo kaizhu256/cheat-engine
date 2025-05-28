@@ -191,15 +191,15 @@ import moduleFs from "fs";
     let file2 = "bin/ce-x86_64.exe";
     data = await moduleFs.promises.readFile(file);
     [
-        ["Cheat Engine", "mydfffdriver"],
-        ["Cheat engine", "mydfffdriver"],
+        ["Cheat Engine", "mydff_driver"],
+        ["Cheat engine", "mydff_driver"],
         ["Cheatengine", "mydfedriver"],
         ["DBK32", "myk32"],
         ["DBK64", "myk64"],
         ["Dbk32", "myk32"],
         ["Dbk64", "myk64"],
-        ["cheat Engine", "mydfffdriver"],
-        ["cheat engine", "mydfffdriver"],
+        ["cheat Engine", "mydff_driver"],
+        ["cheat engine", "mydff_driver"],
         ["cheatengine", "mydfedriver"],
         ["dbk32", "myk32"],
         ["dbk64", "myk64"]
