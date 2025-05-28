@@ -200,13 +200,14 @@ import moduleFs from "fs";
         ["mydff_driver", "Cheat engine"],
         ["mydff_driver", "cheat Engine"],
         ["mydff_driver", "cheat engine"],
-        ["myk ", "dbk "],
         ["myk32", "DBK32"],
         ["myk32", "Dbk32"],
         ["myk32", "dbk32"],
         ["myk64", "DBK64"],
         ["myk64", "Dbk64"],
         ["myk64", "dbk64"],
+        ["myk_", "DBK "],
+        ["myk_", "dbk "],
         ["myk_", "dbk_"]
     ].forEach(function ([bb, aa]) {
         let ii = 0;
