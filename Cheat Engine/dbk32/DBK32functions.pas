@@ -3195,12 +3195,12 @@ begin
 
           if iswow64 then
           begin
-            sysfile:='mydfffdriver64.sys';
+            sysfile:='myk64.sys';
             ultimapsysfile:='ultimap2-64.sys';
           end
           else
           begin
-            sysfile:='mydfffdriver32.sys';
+            sysfile:='myk32.sys';
             ultimapsysfile:='';
           end;
 

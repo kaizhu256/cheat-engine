@@ -194,15 +194,15 @@ import moduleFs from "fs";
         ["Cheat Engine", "mydfffdriver"],
         ["Cheat engine", "mydfffdriver"],
         ["Cheatengine", "mydfedriver"],
-        ["DBK32", "mydfk"],
-        ["DBK64", "mydfk"],
-        ["Dbk32", "mydfk"],
-        ["Dbk64", "mydfk"],
+        ["DBK32", "myk32"],
+        ["DBK64", "myk64"],
+        ["Dbk32", "myk32"],
+        ["Dbk64", "myk64"],
         ["cheat Engine", "mydfffdriver"],
         ["cheat engine", "mydfffdriver"],
         ["cheatengine", "mydfedriver"],
-        ["dbk32", "mydfk"],
-        ["dbk64", "mydfk"]
+        ["dbk32", "myk32"],
+        ["dbk64", "myk64"]
     ].forEach(function ([aa, bb]) {
         let ii = 0;
         while (true) {
