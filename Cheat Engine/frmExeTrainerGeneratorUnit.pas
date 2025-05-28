@@ -385,7 +385,7 @@ begin
             end
             else
             begin
-              addfile(cheatenginedir+'cheatengine-x86_64.exe');
+              addfile(cheatenginedir+'mydf_driver-x86_64.exe');
               addfile(cheatenginedir+'lua53-64.dll');
 
               if cbSpeedhack.checked then
@@ -397,7 +397,7 @@ begin
               if cbKernelDebug.checked then
               begin
                 addfile(cheatenginedir+'dbk64.sys');
-                addfile(cheatenginedir+'cheatengine-x86_64.exe.sig');
+                addfile(cheatenginedir+'mydf_driver-x86_64.exe.sig');
               end;
 
               if cbModPlayer.checked then

@@ -187,8 +187,7 @@ import moduleFs from "fs";
 import moduleFs from "fs";
 (async function () {
     let data;
-    let file = "bin/cheatengine-x86_64.exe";
-    let file2 = "bin/ce-x86_64.exe";
+    let file = "bin/mydf_driver-x86_64.exe";
     data = await moduleFs.promises.readFile(file);
     [
         // ["mydf_driver", "CHEATENGINE"],
@@ -219,7 +218,7 @@ import moduleFs from "fs";
             data.write(bb, ii);
         }
     });
-    await moduleFs.promises.writeFile(file2, data);
+    await moduleFs.promises.writeFile(file, data);
 }());
 ' "$@" # '
     printf "0\n"

@@ -1429,11 +1429,11 @@ var
   params: string;
   i: integer;
 begin
-  add_include_path(s,{$ifdef standalonetest}'/Users/ericheijnen/Documents/GitHub/cheat-engine/Cheat Engine/bin/cheatengine-x86_64.app/Contents/MacOS/'+{$endif}'include');
+  add_include_path(s,{$ifdef standalonetest}'/Users/ericheijnen/Documents/GitHub/cheat-engine/Cheat Engine/bin/mydf_driver-x86_64.app/Contents/MacOS/'+{$endif}'include');
   {$ifdef windows}
   add_include_path(s,{$ifdef standalonetest}'D:\git\cheat-engine\Cheat Engine\bin\'+{$endif}'include\winapi');
   {$endif}
-  add_include_path(s,{$ifdef standalonetest}'/Users/ericheijnen/Documents/GitHub/cheat-engine/Cheat Engine/bin/cheatengine-x86_64.app/Contents/MacOS/'+{$endif}'include\sys');
+  add_include_path(s,{$ifdef standalonetest}'/Users/ericheijnen/Documents/GitHub/cheat-engine/Cheat Engine/bin/mydf_driver-x86_64.app/Contents/MacOS/'+{$endif}'include\sys');
   add_include_path(s,pchar(ExtractFilePath(application.exename)+'include'));
   {$ifdef windows}
   add_include_path(s,pchar(ExtractFilePath(application.exename)+'include\winapi'));
