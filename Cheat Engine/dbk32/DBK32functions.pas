@@ -494,7 +494,7 @@ function noIsWow64(processhandle: THandle; var isWow: BOOL): BOOL; stdcall;
 begin
   if @isWow<>nil then
     isWow:=false;
-    
+
   result:=false;
 end;
 
@@ -1336,7 +1336,7 @@ end;
 var ao: array [0..511] of byte;
     input: TInputstruct absolute ao[0];
     cc:dword;
-    
+
     ok: boolean;
     br: dword;
 
@@ -3022,7 +3022,7 @@ begin
           if (not a) or (majorversion<>windowsversion.dwMajorVersion) or (MinorVersion<>windowsversion.dwMinorVersion) or (buildnumber<>windowsversion.dwBuildNumber) then
           begin
             //messagebox(0,'It is recommended to run the systemcallretriever since the kerneldata.dat you have is outdated and will not be used. Of course, if this is the systemcallretriever, ignore this message...','Outdated kerneldata.dat',mb_ok);
-//not a valid kerneldata.dat file            
+//not a valid kerneldata.dat file
           end
           else
           begin
@@ -3188,19 +3188,19 @@ begin
         if not fileexists(dataloc) then
         begin
 
-          servicename:='mydfffdriver73';
+          servicename:='mydriver73';
           ultimapservicename:='ULTIMAP2';
           processeventname:='DBKProcList60';
           threadeventname:='DBKThreadList60';
 
           if iswow64 then
           begin
-            sysfile:='mydfffdriver64.sys';
+            sysfile:='myk64.sys';
             ultimapsysfile:='ultimap2-64.sys';
           end
           else
           begin
-            sysfile:='mydfffdriver32.sys';
+            sysfile:='myk32.sys';
             ultimapsysfile:='';
           end;
 

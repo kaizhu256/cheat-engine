@@ -1,5 +1,5 @@
 ;
-; mydfffdriver64.inf
+; DBK64.inf
 ;
 
 [Version]
@@ -7,12 +7,12 @@ Signature="$WINDOWS NT$"
 Class=System
 ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318}
 Provider=%ManufacturerName%
-CatalogFile=mydfffdriver64.cat
+CatalogFile=DBK64.cat
 DriverVer= ; TODO: set DriverVer in stampinf property pages
 
 [DestinationDirs]
 DefaultDestDir = 12
-mydfffdriver64_Device_CoInstaller_CopyFiles = 11
+DBK64_Device_CoInstaller_CopyFiles = 11
 
 ; ================= Class section =====================
 
@@ -20,7 +20,7 @@ mydfffdriver64_Device_CoInstaller_CopyFiles = 11
 1 = %DiskName%,,,""
 
 [SourceDisksFiles]
-mydfffdriver64.sys  = 1,,
+DBK64.sys  = 1,,
 WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll=1 ; make sure the number matches with SourceDisksNames
 
 ;*****************************************
@@ -31,49 +31,49 @@ WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll=1 ; make sure the number matches with
 %ManufacturerName%=Standard,NT$ARCH$
 
 [Standard.NT$ARCH$]
-%mydfffdriver64.DeviceDesc%=mydfffdriver64_Device, Root\mydfffdriver64 ; TODO: edit hw-id
+%DBK64.DeviceDesc%=DBK64_Device, Root\DBK64 ; TODO: edit hw-id
 
-[mydfffdriver64_Device.NT]
+[DBK64_Device.NT]
 CopyFiles=Drivers_Dir
 
 [Drivers_Dir]
-mydfffdriver64.sys
+DBK64.sys
 
 ;-------------- Service installation
-[mydfffdriver64_Device.NT.Services]
-AddService = mydfffdriver64,%SPSVCINST_ASSOCSERVICE%, mydfffdriver64_Service_Inst
+[DBK64_Device.NT.Services]
+AddService = DBK64,%SPSVCINST_ASSOCSERVICE%, DBK64_Service_Inst
 
-; -------------- mydfffdriver64 driver install sections
-[mydfffdriver64_Service_Inst]
-DisplayName    = %mydfffdriver64.SVCDESC%
+; -------------- DBK64 driver install sections
+[DBK64_Service_Inst]
+DisplayName    = %DBK64.SVCDESC%
 ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
 StartType      = 3               ; SERVICE_DEMAND_START
 ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
-ServiceBinary  = %12%\mydfffdriver64.sys
+ServiceBinary  = %12%\DBK64.sys
 
 ;
-;--- mydfffdriver64_Device Coinstaller installation ------
+;--- DBK64_Device Coinstaller installation ------
 ;
 
-[mydfffdriver64_Device.NT.CoInstallers]
-AddReg=mydfffdriver64_Device_CoInstaller_AddReg
-CopyFiles=mydfffdriver64_Device_CoInstaller_CopyFiles
+[DBK64_Device.NT.CoInstallers]
+AddReg=DBK64_Device_CoInstaller_AddReg
+CopyFiles=DBK64_Device_CoInstaller_CopyFiles
 
-[mydfffdriver64_Device_CoInstaller_AddReg]
+[DBK64_Device_CoInstaller_AddReg]
 HKR,,CoInstallers32,0x00010000, "WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll,WdfCoInstaller"
 
-[mydfffdriver64_Device_CoInstaller_CopyFiles]
+[DBK64_Device_CoInstaller_CopyFiles]
 WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll
 
-[mydfffdriver64_Device.NT.Wdf]
-KmdfService =  mydfffdriver64, mydfffdriver64_wdfsect
-[mydfffdriver64_wdfsect]
+[DBK64_Device.NT.Wdf]
+KmdfService =  DBK64, DBK64_wdfsect
+[DBK64_wdfsect]
 KmdfLibraryVersion = $KMDFVERSION$
 
 [Strings]
 SPSVCINST_ASSOCSERVICE= 0x00000002
-ManufacturerName="mydfffdriver64" ;TODO: Replace with your manufacturer name
+ManufacturerName="Cheat Engine" ;TODO: Replace with your manufacturer name
 ClassName="System" ; TODO: edit ClassName
-DiskName = "mydfffdriver64 Installation Disk"
-mydfffdriver64.DeviceDesc = "mydfffdriver64 Device"
-mydfffdriver64.SVCDESC = "mydfffdriver64 Service"
+DiskName = "DBK64 Installation Disk"
+DBK64.DeviceDesc = "DBK64 Device"
+DBK64.SVCDESC = "DBK64 Service"

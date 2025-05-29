@@ -1,8 +1,7 @@
 #!/bin/sh
 
 # sh one-liner
-# sh jslint_ci.sh shCiBuildWasm
-# sh jslint_ci.sh shSqlmathUpdate
+# sh ~/jslint_ci.sh shCheatengineUpdate
 
 shCheatengineUpdate() {(set -e
 # this function will update "Cheat Engine/bin"
@@ -42,6 +41,9 @@ shCheatengineUpdate() {(set -e
         rt-mod-regreset.exe \
         speedhack-x86_64.dll \
         speedhacktest-x86_64.exe \
+        standalonephase1.dat \
+        standalonephase2.dat \
+        tiny.dat \
         tutorial-x86_64.exe \
         vehdebug-x86_64.dll \
         windowsrepair.exe \
@@ -122,6 +124,7 @@ shCiBaseCustom() {(set -e
         # ./speedhack/speedhacktest/speedhacktest.lpi) ;;
         # ./windowsrepair/windowsrepair.lpi) ;;
         # ./winhook/winhook.lpi) ;;
+        #
         ./cecore.lpi) ;;
         ./dbk32/Kernelmodule) ;;
         ./xmplayer/xmplayer.lpi) ;;
@@ -188,15 +191,36 @@ import moduleFs from "fs";
 (async function () {
     let data;
     let file = "bin/cheatengine-x86_64.exe";
-    let ii;
     data = await moduleFs.promises.readFile(file);
-    while (true) {
-        ii = data.indexOf("Cheat Engine", ii);
-        if (ii === -1) {
-            break;
+    [
+        // ["mydf_driver", "CHEATENGINE"],
+        // ["mydf_driver", "CheatEngine"],
+        // ["mydf_driver", "Cheatengine"],
+        // ["mydf_driver", "cheatEngine"],
+        // ["mydf_driver", "cheatengine"],
+        ["myd_f_driver", "Cheat Engine"],
+        ["myd_f_driver", "Cheat engine"],
+        ["myd_f_driver", "cheat Engine"],
+        ["myd_f_driver", "cheat engine"],
+        ["myk32", "DBK32"],
+        ["myk32", "Dbk32"],
+        ["myk32", "dbk32"],
+        ["myk64", "DBK64"],
+        ["myk64", "Dbk64"],
+        ["myk64", "dbk64"],
+        ["myk_", "DBK "],
+        ["myk_", "dbk "],
+        ["myk_", "dbk_"]
+    ].forEach(function ([bb, aa]) {
+        let ii = 0;
+        while (true) {
+            ii = data.indexOf(aa, ii);
+            if (ii === -1) {
+                break;
+            }
+            data.write(bb, ii);
         }
-        data.write("mydfffdriver", ii);
-    }
+    });
     await moduleFs.promises.writeFile(file, data);
 }());
 ' "$@" # '
@@ -266,6 +290,7 @@ shCiBaseCustomArtifactUpload() {(set -e
         rm -f "branch-$GITHUB_BRANCH0/"*.exe
         ;;
     esac
+    cp "../../Cheat Engine/bin/"*.dat "branch-$GITHUB_BRANCH0/"
     cp "../../Cheat Engine/bin/"*.dll "branch-$GITHUB_BRANCH0/"
     cp "../../Cheat Engine/bin/"*.exe "branch-$GITHUB_BRANCH0/"
     find "../../Cheat Engine" \
