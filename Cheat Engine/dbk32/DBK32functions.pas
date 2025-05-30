@@ -3188,19 +3188,19 @@ begin
         if not fileexists(dataloc) then
         begin
 
-          servicename:='mydriver73';
+          servicename:='C3DR1V3R73';
           ultimapservicename:='ULTIMAP2';
           processeventname:='DBKProcList60';
           threadeventname:='DBKThreadList60';
 
           if iswow64 then
           begin
-            sysfile:='myk64.sys';
+            sysfile:='D8K64.sys';
             ultimapsysfile:='ultimap2-64.sys';
           end
           else
           begin
-            sysfile:='myk32.sys';
+            sysfile:='D8K32.sys';
             ultimapsysfile:='';
           end;
 

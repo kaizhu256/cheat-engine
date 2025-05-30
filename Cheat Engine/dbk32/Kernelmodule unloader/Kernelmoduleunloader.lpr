@@ -406,7 +406,7 @@ begin
       end;
 
       try
-        s:='mydriver73';
+        s:='C3DR1V3R73';
         getmem(apppath,250);
         GetModuleFileName(0,apppath,250);
 

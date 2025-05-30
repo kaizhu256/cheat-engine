@@ -1,7 +1,9 @@
 #!/bin/sh
 
 # sh one-liner
-# sh ~/jslint_ci.sh shCheatengineUpdate
+: '
+sh jslint_ci.sh shCheatengineUpdate
+'
 
 shCheatengineUpdate() {(set -e
 # this function will update "Cheat Engine/bin"
@@ -49,15 +51,12 @@ shCheatengineUpdate() {(set -e
         windowsrepair.exe \
         winhook-x86_64.dll
     do
-        if [ ! -f "$FILE" ]
-        then
-            (
-            printf "downloading $FILE ...\n"
-            shGithubFileDownload \
-                "kaizhu256/cheat-engine/artifact/branch-alpha/$FILE"
-            ) &
-            PID_LIST="$PID_LIST $!"
-        fi
+        (
+        printf "downloading $FILE ...\n"
+        shGithubFileDownload \
+            "kaizhu256/cheat-engine/artifact/branch-alpha/$FILE"
+        ) &
+        PID_LIST="$PID_LIST $!"
     done
     shPidListWait build_ext "$PID_LIST"
     printf "\ndownloading done\n"
@@ -193,24 +192,24 @@ import moduleFs from "fs";
     let file = "bin/cheatengine-x86_64.exe";
     data = await moduleFs.promises.readFile(file);
     [
-        // ["mydf_driver", "CHEATENGINE"],
-        // ["mydf_driver", "CheatEngine"],
-        // ["mydf_driver", "Cheatengine"],
-        // ["mydf_driver", "cheatEngine"],
-        // ["mydf_driver", "cheatengine"],
-        ["myd_f_driver", "Cheat Engine"],
-        ["myd_f_driver", "Cheat engine"],
-        ["myd_f_driver", "cheat Engine"],
-        ["myd_f_driver", "cheat engine"],
-        ["myk32", "DBK32"],
-        ["myk32", "Dbk32"],
-        ["myk32", "dbk32"],
-        ["myk64", "DBK64"],
-        ["myk64", "Dbk64"],
-        ["myk64", "dbk64"],
-        ["myk_", "DBK "],
-        ["myk_", "dbk "],
-        ["myk_", "dbk_"]
+        ["CH3473N61N3", "CHEATENGINE"],
+        // ["CH3473N61N3", "CheatEngine"],
+        // ["CH3473N61N3", "Cheatengine"],
+        // ["CH3473N61N3", "cheatEngine"],
+        // ["CH3473N61N3", "cheatengine"],
+        ["CH347_3N61N3", "Cheat Engine"],
+        ["CH347_3N61N3", "Cheat engine"],
+        ["CH347_3N61N3", "cheat Engine"],
+        ["CH347_3N61N3", "cheat engine"],
+        ["D8K32", "DBK32"],
+        ["D8K32", "Dbk32"],
+        ["D8K32", "dbk32"],
+        ["D8K64", "DBK64"],
+        ["D8K64", "Dbk64"],
+        ["D8K64", "dbk64"],
+        ["D8K_", "DBK "],
+        ["D8K_", "dbk "],
+        ["D8K_", "dbk_"]
     ].forEach(function ([bb, aa]) {
         let ii = 0;
         while (true) {

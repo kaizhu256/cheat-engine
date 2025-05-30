@@ -9,12 +9,12 @@
       </Flags>
       <SessionStorage Value="InProjectDir"/>
       <AutoCreateForms Value="False"/>
-      <Title Value="myd_f_driver 7.5"/>
+      <Title Value="CH347_3N61N3 7.5"/>
       <UseXPManifest Value="True"/>
       <XPManifest>
         <DpiAware Value="True"/>
         <ExecutionLevel Value="highestAvailable"/>
-        <TextName Value="myd_f_driver"/>
+        <TextName Value="CH347_3N61N3"/>
         <TextDesc Value="Scripting language and tools"/>
       </XPManifest>
       <Icon Value="0"/>
@@ -31,7 +31,7 @@
       <BuildNr Value="7431"/>
       <Language Value="041C"/>
       <CharSet Value="04B0"/>
-      <StringTable CompanyName="myd_f_driver" FileDescription="myd_f_driver" ProductVersion="7.5"/>
+      <StringTable CompanyName="CH347_3N61N3" FileDescription="CH347_3N61N3" ProductVersion="7.5"/>
     </VersionInfo>
     <BuildModes Count="10">
       <Item1 Name="Release 32-Bit" Default="True"/>
