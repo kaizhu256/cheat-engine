@@ -4,6 +4,8 @@
 - none
 
 # v2025.5.1-beta
+- ci - sh jslint_ci.sh shCheatengineUpdate /g/games/cheatengine/.
+- av - Rename 1337.
 - ci - Add files *.dat.
 - av - Rename mykxx.
 - av - Replace "Cheat Engine" in .exe.

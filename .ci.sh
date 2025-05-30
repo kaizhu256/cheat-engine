@@ -3,15 +3,22 @@
 # sh one-liner
 : '
 sh jslint_ci.sh shCheatengineUpdate
+sh jslint_ci.sh shCheatengineUpdate /g/games/cheatengine/
 '
 
 shCheatengineUpdate() {(set -e
 # this function will update "Cheat Engine/bin"
     . "$HOME/myci2.sh" : && shMyciUpdate
     (
-    cd "Cheat Engine/bin"
-    rm * 2>/dev/null || true
-    git checkout HEAD .
+    DIR="$1"
+    if [ ! "$DIR" ]
+    then
+        cd "Cheat Engine/bin"
+        rm * 2>/dev/null || true
+        git checkout HEAD .
+    else
+        cd "$DIR"
+    fi
     PID_LIST=""
     for FILE in \
         "Runtime Modifier.exe" \
@@ -53,8 +60,10 @@ shCheatengineUpdate() {(set -e
     do
         (
         printf "downloading $FILE ...\n"
-        shGithubFileDownload \
-            "kaizhu256/cheat-engine/artifact/branch-alpha/$FILE"
+        curl -LOs \
+"https://github.com/kaizhu256/cheat-engine\
+/raw/refs/heads/artifact/branch-alpha/\
+$FILE"
         ) &
         PID_LIST="$PID_LIST $!"
     done
