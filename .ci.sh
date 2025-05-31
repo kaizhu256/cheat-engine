@@ -229,7 +229,7 @@ import moduleFs from "fs";
             data.write(bb, ii);
         }
     });
-    await moduleFs.promises.writeFile(file, data);
+    // await moduleFs.promises.writeFile(file, data);
 }());
 ' "$@" # '
     printf "0\n"
