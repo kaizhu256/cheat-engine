@@ -25,3 +25,7 @@
 [remote "upstream"]
     fetch = +refs/heads/*:refs/remotes/upstream/*
     url = https://github.com/cheat-engine/cheat-engine
+
+[branch "alpha2"]
+    remote = origin
+    merge = refs/heads/alpha2
